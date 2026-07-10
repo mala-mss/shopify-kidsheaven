@@ -1,0 +1,107 @@
+{%- comment -%}
+  Kid's Haven — Value props / why-us.
+  4 colorful icon cards on white. Each card has a colored blob accent
+  + matching icon tile. Soft hover lift.
+{%- endcomment -%}
+
+<section class="kh-vp kh-reveal" aria-label="Why Kid's Haven">
+  <div class="kh-wrap">
+    <header class="kh-vp__head">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="kh-eyebrow" data-reveal>{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h2 class="kh-h2" data-reveal data-reveal-delay="1">{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="kh-lead" data-reveal data-reveal-delay="2">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </header>
+
+    <div class="kh-vp__grid">
+      {%- for block in section.blocks -%}
+        <article class="kh-vp__card kh-vp__card--{{ block.settings.color }}" data-reveal data-reveal-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
+          <span class="kh-vp__icon" aria-hidden="true">{{ block.settings.icon_svg | raw }}</span>
+          <h3 class="kh-vp__h">{{ block.settings.title }}</h3>
+          <p class="kh-vp__p">{{ block.settings.text }}</p>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "KH Value props",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Made for the beach, gentle on skin" },
+    { "type": "text", "id": "title",   "label": "Title",   "default": "Little details, big summers." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle",
+      "default": "Every piece is engineered for real-world play — not just photo ops." }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "UPF 50+ sun-safe" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Certified fabric blocks 98% of UV — so the only thing they tan is their smile." },
+        { "type": "select", "id": "color", "label": "Accent color",
+          "options": [
+            { "value": "coral",  "label": "Coral" },
+            { "value": "turq",   "label": "Turquoise" },
+            { "value": "yellow", "label": "Yellow" },
+            { "value": "ink",    "label": "Ink" }
+          ],
+          "default": "coral"
+        },
+        { "type": "html", "id": "icon_svg", "label": "Icon (inline SVG, ~28x28)",
+          "default": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='4'/><path d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41'/></svg>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "KH Value props",
+      "blocks": [
+        {
+          "type": "value",
+          "settings": {
+            "title": "UPF 50+ sun-safe",
+            "text": "Certified fabric blocks 98% of UV.",
+            "color": "coral",
+            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='4'/><path d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41'/></svg>"
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "title": "Quick-dry magic",
+            "text": "Out of the water, into the sandbox — no soggy kid for long.",
+            "color": "turq",
+            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 3v6M12 21v-6M3 12h6M21 12h-6M5.6 5.6l4.2 4.2M18.4 18.4l-4.2-4.2M5.6 18.4l4.2-4.2M18.4 5.6l-4.2 4.2'/></svg>"
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "title": "Ethically made",
+            "text": "Fair-wage workshops, OEKO-TEX certified fabrics, low-impact dyes.",
+            "color": "yellow",
+            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/></svg>"
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "title": "Comfy, room to grow",
+            "text": "Adjustable straps, soft seams, fits that last more than one summer.",
+            "color": "ink",
+            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z'/></svg>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

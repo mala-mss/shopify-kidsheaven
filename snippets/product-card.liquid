@@ -1,0 +1,64 @@
+{% comment %}
+  Product card snippet
+  Usage: {% render 'product-card', product: product, accent: '#B8925A' %}
+{% endcomment %}
+
+<style>
+  .kh-card { display: block; text-decoration: none; color: inherit; }
+  .kh-card__media {
+    position: relative; overflow: hidden;
+    background: #EFE7D8; aspect-ratio: 3/4;
+  }
+  .kh-card__media img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .8s cubic-bezier(.2,.7,.2,1);
+  }
+  .kh-card:hover .kh-card__media img { transform: scale(1.04); }
+  .kh-card__badge {
+    position: absolute; top: 12px; left: 12px;
+    background: #fff; color: #1F1A16;
+    font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+    padding: 6px 10px;
+  }
+  .kh-card__body { padding: 16px 4px 0; text-align: center; }
+  .kh-card__title { font-size: 14px; letter-spacing: .06em; margin: 0 0 6px; font-weight: 500; }
+  .kh-card__price { font-size: 13px; opacity: .8; }
+  .kh-card__price s { opacity: .5; margin-right: 6px; }
+</style>
+
+{%- if product and product != blank -%}
+  <a class="kh-card" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+    <div class="kh-card__media">
+      {%- if product.compare_at_price > product.price -%}
+        <span class="kh-card__badge" style="color: {{ accent }};">{{ 'product.sale' | t }}</span>
+      {%- elsif product.tags contains 'new' -%}
+        <span class="kh-card__badge" style="color: {{ accent }};">{{ 'product.new' | t }}</span>
+      {%- endif -%}
+      {%- if product.featured_image -%}
+        {{ product.featured_image | image_url: width: 800 | image_tag:
+            loading: 'lazy',
+            alt: product.featured_image.alt | default: product.title,
+            widths: '300,500,700,900',
+            sizes: '(max-width: 520px) 100vw, (max-width: 900px) 50vw, 25vw'
+        }}
+      {%- endif -%}
+    </div>
+    <div class="kh-card__body">
+      <h3 class="kh-card__title">{{ product.title }}</h3>
+      <div class="kh-card__price">
+        {%- if product.compare_at_price > product.price -%}
+          <s>{{ product.compare_at_price | money }}</s>
+        {%- endif -%}
+        {{ product.price | money }}
+      </div>
+    </div>
+  </a>
+{%- else -%}
+  <div class="kh-card" aria-hidden="true">
+    <div class="kh-card__media"></div>
+    <div class="kh-card__body">
+      <h3 class="kh-card__title">&nbsp;</h3>
+      <div class="kh-card__price">&nbsp;</div>
+    </div>
+  </div>
+{%- endif -%}

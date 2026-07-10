@@ -1,0 +1,80 @@
+{
+  "sections": {
+    "hero": {
+      "type": "custom-hero",
+      "settings": {
+        "eyebrow": "Summer 2026 · Kids Beach Club",
+        "heading_line_1": "Tiny toes,",
+        "heading_highlight": "big waves.",
+        "heading_line_2": "Made for the splash.",
+        "subheading": "Colorful, sun-safe, ready for everything summer throws at them. Kid's Haven is a beach club for the small ones — playful, premium, built to last.",
+        "button_label": "Shop the summer",
+        "secondary_label": "See the story"
+      }
+    },
+    "categories": {
+      "type": "kh-categories",
+      "settings": {
+        "heading": "Pick their summer mood.",
+        "subheading": "From the first splash to the last ice cream — every piece is made for the season."
+      }
+    },
+    "value-props": {
+      "type": "value-props",
+      "settings": {
+        "eyebrow": "Made for the beach, gentle on skin",
+        "title": "Little details, big summers.",
+        "subtitle": "Every piece is engineered for real-world play — not just photo ops."
+      }
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Best sellers",
+        "heading": "The pieces parents keep re-buying.",
+        "description": "Quick-dry, sun-safe, ready for the splash. These are the ones that go everywhere with us.",
+        "products_to_show": 8,
+        "show_view_all": true,
+        "view_all_label": "Shop the full collection",
+        "background": "cream"
+      }
+    },
+    "brand-story": {
+      "type": "brand-story",
+      "settings": {
+        "reverse": false,
+        "eyebrow": "Our story",
+        "heading": "A beach club for the small ones.",
+        "body": "<p>Kid's Haven started in a tiny coastal studio with a simple belief: kids deserve beach clothes that feel as good as they look. We design every piece in-house, source sun-safe and OEKO-TEX certified fabrics, and partner with fair-wage workshops who treat every stitch like it matters — because to a kid, it kind of does.</p><p>The result? Colorful, premium, ready-for-anything pieces built to last more than one summer. Designed by parents, for parents who refuse to compromise on quality (or fun).</p>",
+        "cta_label": "Read more"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "eyebrow": "Beach diaries",
+        "title": "Real kids, real summer.",
+        "subtitle": "Snapshots from the families already living in Kid's Haven this season."
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "eyebrow": "Stay close",
+        "title": "Get the new drops first.",
+        "text": "One letter a month, no spam — early access to new collections, beach inspiration, and the occasional free shipping code.",
+        "placeholder": "your@email.com",
+        "button_label": "Join the club"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "categories",
+    "value-props",
+    "featured-collection",
+    "brand-story",
+    "testimonials",
+    "newsletter"
+  ]
+}

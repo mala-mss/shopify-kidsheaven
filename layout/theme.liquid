@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" dir="{{ 'ltr' | default: 'ltr' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fbf7f1">
+    <link rel="canonical" href="{{ canonical_url }}">
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64 }}">
+    {%- endif -%}
+
+    <title>{{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+    {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+
+    {% render 'stylesheets' %}
+    {{ 'kids-haven.css' | asset_url | stylesheet_tag }}
+
+    {{ content_for_header }}
+  </head>
+  <body class="template-{{ template | split: '.' | first }} kh-body">
+    <a class="visually-hidden" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
+    {% sections 'header-group' %}
+    <main id="MainContent" role="main">
+      {{ content_for_layout }}
+    </main>
+    {% sections 'footer-group' %}
+    {% render 'scripts' %}
+    {{ 'kh-reveal.js' | asset_url | script_tag }}
+  </body>
+</html>

@@ -1,0 +1,23 @@
+{%- comment -%}
+  Kid's Haven — 404 page.
+  Pure branded layout using the KH design tokens.
+{%- endcomment -%}
+
+<div class="kh-404-wrap">
+  <div class="kh-empty kh-reveal is-in">
+    <span class="kh-empty__icon" aria-hidden="true">✦</span>
+    <h1 data-reveal>404 — Page not found</h1>
+    <p data-reveal data-reveal-delay="1">The page you’re looking for swam off somewhere. Let’s get you back to the beach.</p>
+    <a href="{{ routes.root_url }}" class="kh-btn kh-btn--coral" data-reveal data-reveal-delay="2">
+      Take me home <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:names.404",
+  "class": "section-wrapper",
+  "settings": []
+}
+{% endschema %}

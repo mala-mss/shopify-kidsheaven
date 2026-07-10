@@ -1,0 +1,55 @@
+{%- comment -%}
+  Kid's Haven — Newsletter signup with beach graphic treatment.
+  Coral→sunny gradient card, sun decoration, rounded email input.
+{%- endcomment -%}
+
+<section class="kh-nl kh-reveal" aria-label="Newsletter signup">
+  <div class="kh-wrap">
+    <div class="kh-nl__card" data-reveal>
+      <span class="kh-nl__sun" aria-hidden="true"></span>
+      <span class="kh-nl__wave" aria-hidden="true"></span>
+
+      <div class="kh-nl__inner">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="kh-eyebrow kh-nl__eye">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        <h2 class="kh-nl__h">{{ section.settings.title }}</h2>
+        {%- if section.settings.text != blank -%}
+          <p class="kh-nl__p">{{ section.settings.text }}</p>
+        {%- endif -%}
+
+        {%- form 'customer', class: 'kh-nl__form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <input type="email"
+                 name="contact[email]"
+                 required
+                 placeholder="{{ section.settings.placeholder | default: 'beachclub@email.com' }}"
+                 aria-label="Email address"
+                 class="kh-nl__input">
+          <button type="submit" class="kh-nl__submit">
+            {{ section.settings.button_label | default: 'Join the club' }} <span aria-hidden="true">→</span>
+          </button>
+          {%- if form.posted_successfully? -%}
+            <p class="kh-nl__ok">✿ {{ 'general.newsletter.success' | t }}</p>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "KH Newsletter",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Stay close" },
+    { "type": "text", "id": "title",   "label": "Title",   "default": "Get the new drops first." },
+    { "type": "textarea", "id": "text", "label": "Text",
+      "default": "One letter a month, no spam — early access to new collections, beach inspiration, and the occasional free shipping code." },
+    { "type": "text", "id": "placeholder",   "label": "Email placeholder", "default": "your@email.com" },
+    { "type": "text", "id": "button_label",  "label": "Button label", "default": "Join the club" }
+  ],
+  "presets": [{ "name": "KH Newsletter" }]
+}
+{% endschema %}

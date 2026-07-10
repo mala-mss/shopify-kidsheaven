@@ -1,0 +1,92 @@
+{%- comment -%}
+  Kid's Haven — Testimonials / UGC strip.
+  Cards with star rating, quote, author + location. Rounded, beachy, scroll-reveal.
+{%- endcomment -%}
+
+<section class="kh-tst kh-reveal" aria-label="Customer reviews">
+  <div class="kh-wrap">
+    <header class="kh-tst__head">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="kh-eyebrow" data-reveal>{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h2 class="kh-h2" data-reveal data-reveal-delay="1">{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="kh-lead" data-reveal data-reveal-delay="2">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </header>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="kh-tst__grid">
+        {%- for block in section.blocks -%}
+          <article class="kh-tst__card" data-reveal data-reveal-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
+            <span class="kh-tst__quote-mark" aria-hidden="true">”</span>
+            <div class="kh-tst__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote class="kh-tst__q">“{{ block.settings.quote }}”</blockquote>
+            <p class="kh-tst__by">
+              <strong>{{ block.settings.author }}</strong>
+              {%- if block.settings.location != blank -%}
+                {{ block.settings.location }}
+              {%- endif -%}
+            </p>
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "KH Testimonials",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Beach diaries" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Real kids, real summer." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle",
+      "default": "Snapshots from the families already living in Kid's Haven this season." }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "textarea", "id": "quote",   "label": "Quote", "info": "Use real customer quotes only." },
+        { "type": "text",    "id": "author",  "label": "Author" },
+        { "type": "text",    "id": "location","label": "Location" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "KH Testimonials",
+      "blocks": [
+        {
+          "type": "quote",
+          "settings": {
+            "quote": "We bought one swimsuit to test. We now own four. The UPF is real and the patterns are chef's kiss.",
+            "author": "Maya R.",
+            "location": "Los Angeles, CA"
+          }
+        },
+        {
+          "type": "quote",
+          "settings": {
+            "quote": "My daughter wore her cover-up straight from the beach to dinner. Got three compliments before dessert.",
+            "author": "Daniel K.",
+            "location": "Lisbon, PT"
+          }
+        },
+        {
+          "type": "quote",
+          "settings": {
+            "quote": "Finally — kids' beach clothes that don't look like a cartoon. Premium feel, fun colors, perfect fit.",
+            "author": "Aisha B.",
+            "location": "Dubai, AE"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

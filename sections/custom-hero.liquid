@@ -1,0 +1,120 @@
+{%- comment -%}
+  Kid's Haven — Hero
+  Full-width beach scene built with CSS gradients + SVG decorations.
+  Bold playful headline, dual CTA, floating motifs, scroll-reveal.
+{%- endcomment -%}
+
+<section class="kh-hero" aria-label="Hero">
+  <div class="kh-hero__decor kh-hero__sun" aria-hidden="true"></div>
+
+  <svg class="kh-decor-svg kh-hero__shell" viewBox="0 0 100 100" aria-hidden="true">
+    <defs>
+      <linearGradient id="shellG" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#ffd23f"/>
+        <stop offset="100%" stop-color="#ff6f5e"/>
+      </linearGradient>
+    </defs>
+    <path d="M50 12 C70 12 88 32 88 56 C88 76 70 88 50 88 C30 88 12 76 12 56 C12 32 30 12 50 12 Z" fill="url(#shellG)"/>
+    <path d="M50 12 L50 88 M50 22 L78 56 M50 22 L22 56 M50 22 L82 72 M50 22 L18 72" stroke="#1d2a3a" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <svg class="kh-decor-svg kh-hero__umbrella" viewBox="0 0 120 120" aria-hidden="true">
+    <defs>
+      <linearGradient id="umbG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2ec4d6"/>
+        <stop offset="100%" stop-color="#1aa3b3"/>
+      </linearGradient>
+    </defs>
+    <path d="M10 70 Q60 -10 110 70 Z" fill="url(#umbG)"/>
+    <path d="M30 70 Q60 30 90 70" fill="#fff8ec" opacity=".9"/>
+    <path d="M30 70 Q60 30 90 70" fill="none" stroke="#1d2a3a" stroke-width="1.5"/>
+    <line x1="60" y1="70" x2="60" y2="115" stroke="#1d2a3a" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+
+  <div class="kh-hero__inner kh-reveal">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="kh-hero__eyebrow" data-reveal>{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+
+    <h1 class="kh-h1" data-reveal data-reveal-delay="1">
+      {{ section.settings.heading_line_1 }}
+      {%- if section.settings.heading_highlight != blank -%}
+        <em>{{ section.settings.heading_highlight }}</em>
+      {%- endif -%}
+      {%- if section.settings.heading_line_2 != blank -%}
+        <br>{{ section.settings.heading_line_2 }}
+      {%- endif -%}
+    </h1>
+
+    {%- if section.settings.subheading != blank -%}
+      <p class="kh-hero__sub" data-reveal data-reveal-delay="2">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    <div class="kh-hero__ctas" data-reveal data-reveal-delay="3">
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="kh-btn kh-btn--coral">
+          {{ section.settings.button_label }}
+          <span aria-hidden="true">→</span>
+        </a>
+      {%- endif -%}
+      {%- if section.settings.secondary_label != blank -%}
+        <a href="{{ section.settings.secondary_link | default: '#' }}" class="kh-btn kh-btn--ghost">
+          {{ section.settings.secondary_label }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="kh-hero__chips" data-reveal data-reveal-delay="4">
+        {%- for block in section.blocks -%}
+          <span class="kh-hero__chip" {{ block.shopify_attributes }}>
+            <span aria-hidden="true">{{ block.settings.emoji | default: '✦' }}</span>
+            {{ block.settings.text }}
+          </span>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="kh-hero__wave" aria-hidden="true"></div>
+</section>
+
+{% schema %}
+{
+  "name": "KH Hero",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Summer 2026 · Kids Beach Club" },
+    { "type": "text", "id": "heading_line_1", "label": "Heading line 1", "default": "Tiny toes," },
+    { "type": "text", "id": "heading_highlight", "label": "Highlighted word (shown in coral)", "default": "big waves." },
+    { "type": "text", "id": "heading_line_2", "label": "Heading line 2", "default": "Made for the splash." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading",
+      "default": "Colorful, sun-safe, ready for everything summer throws at them. Kid's Haven is a beach club for the small ones — playful, premium, built to last." },
+    { "type": "text", "id": "button_label", "label": "Primary button", "default": "Shop the summer" },
+    { "type": "url",  "id": "button_link", "label": "Primary link" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button", "default": "See the story" },
+    { "type": "url",  "id": "secondary_link", "label": "Secondary link" }
+  ],
+  "blocks": [
+    {
+      "type": "chip",
+      "name": "Trust chip",
+      "settings": [
+        { "type": "text", "id": "emoji", "label": "Emoji/icon", "default": "☼" },
+        { "type": "text", "id": "text", "label": "Text", "default": "UPF 50+ sun-safe" }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "KH Hero",
+      "blocks": [
+        { "type": "chip", "settings": { "emoji": "☼", "text": "UPF 50+ sun-safe" } },
+        { "type": "chip", "settings": { "emoji": "✦", "text": "Quick-dry fabric" } },
+        { "type": "chip", "settings": { "emoji": "♥", "text": "Ethically made" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

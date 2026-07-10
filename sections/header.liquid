@@ -1,0 +1,96 @@
+{%- comment -%}
+  Kid's Haven — Header
+  Left: menu (mobile) + search  |  Centered logo  |  Right: account + cart
+{%- endcomment -%}
+
+<header class="kh-pageheader" role="banner">
+  <div class="kh-header">
+    <div class="kh-header__inner">
+      <div class="kh-header__left">
+        <button class="kh-icon-btn kh-icon-btn--menu" type="button" aria-label="Open menu" data-kh-open-drawer="KhDrawer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <nav class="kh-nav" aria-label="Primary">
+          {%- for link in section.settings.menu.links -%}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {%- endfor -%}
+        </nav>
+      </div>
+
+      <a class="kh-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+        {%- if section.settings.logo != blank -%}
+          {{ section.settings.logo | image_url: width: 260 | image_tag:
+            loading: 'eager',
+            width: section.settings.logo.width,
+            height: section.settings.logo.height,
+            alt: shop.name
+          }}
+        {%- else -%}
+          <span class="kh-header__logo-text">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+
+      <div class="kh-header__right">
+        <a class="kh-icon-btn" href="{{ routes.search_url }}" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a class="kh-icon-btn" href="{{ routes.account_url }}" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a class="kh-icon-btn" href="{{ routes.cart_url }}" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7Z"/>
+            <path d="M9 7a3 3 0 0 1 6 0" stroke-linecap="round"/>
+          </svg>
+          {%- if cart.item_count > 0 -%}
+            <span class="kh-cart-count">{{ cart.item_count }}</span>
+          {%- endif -%}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="kh-drawer" id="KhDrawer" data-kh-drawer>
+  <aside class="kh-drawer__panel" role="dialog" aria-label="Menu">
+    <button class="kh-drawer__close" type="button" aria-label="Close menu" data-kh-close-drawer>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+    </button>
+    <nav aria-label="Mobile">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+  </aside>
+</div>
+
+<script>
+  (function () {
+    var drawer = document.getElementById('KhDrawer');
+    if (!drawer) return;
+    document.querySelectorAll('[data-kh-open-drawer]').forEach(function (btn) {
+      btn.addEventListener('click', function () { drawer.setAttribute('open', ''); document.body.style.overflow = 'hidden'; });
+    });
+    document.querySelectorAll('[data-kh-close-drawer]').forEach(function (btn) {
+      btn.addEventListener('click', function () { drawer.removeAttribute('open'); document.body.style.overflow = ''; });
+    });
+    drawer.addEventListener('click', function (e) { if (e.target === drawer) { drawer.removeAttribute('open'); document.body.style.overflow = ''; } });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.hasAttribute('open')) { drawer.removeAttribute('open'); document.body.style.overflow = ''; } });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "KH Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

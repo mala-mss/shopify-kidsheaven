@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(\\(Get-Content \"C:\\\\Users\\\\Quick tech\\\\kidsheaven\\\\assets\\\\kids-haven.css\" | Measure-Object -Line\\).Lines; \\(Get-Content \"C:\\\\Users\\\\Quick tech\\\\kidsheaven\\\\assets\\\\kh-reveal.js\" | Measure-Object -Line\\).Lines; \\(Get-Content \"C:\\\\Users\\\\Quick tech\\\\kidsheaven\\\\templates\\\\index.json\" | Measure-Object -Line\\).Lines)",
+      "Bash(dir)",
+      "Bash(dir /s /b)",
+      "Bash(dir /B)",
+      "Bash(shopify auth *)",
+      "Bash(shopify whoami *)",
+      "Bash(shopify help *)",
+      "Bash(shopify theme *)",
+      "Bash(sed -E \"s/.*render[[:space:]]+['\\\\\"]\\([^'\\\\\"]+\\)['\\\\\"].*/\\\\1/\")",
+      "Read(//tmp/**)",
+      "Bash(sed -E \"s/['\\\\\"]\\([^'\\\\\"]+\\)['\\\\\"].*/\\\\1/\")",
+      "Bash(sed -E \"s/.*section[[:space:]]+['\\\\\"]\\([^'\\\\\"]+\\)['\\\\\"].*/\\\\1/\")",
+      "Bash(sed -E \"s/icon:[[:space:]]*['\\\\\"]\\([^'\\\\\"]+\\)['\\\\\"].*/\\\\1/\")",
+      "Bash(announcement\")",
+      "Bash(shopify store *)",
+      "Skill(run)",
+      "Bash(netstat -ano)",
+      "Bash(powershell -Command \"Get-NetTCPConnection -LocalPort 9292 -ErrorAction SilentlyContinue | Select-Object LocalPort, OwningProcess, State\")",
+      "PowerShell(Get-Process *)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}  time=%{time_total}s  size=%{size_download}\\\\n\" http://127.0.0.1:9292)",
+      "Bash(curl -s http://127.0.0.1:9292/collections/all)",
+      "Bash(where chromium *)",
+      "Bash(where chrome *)",
+      "Bash(where playwright *)",
+      "Bash(npx --version)",
+      "Bash(node -e \"try{require\\('playwright'\\);console.log\\('playwright OK'\\)}catch\\(e\\){console.log\\('no playwright'\\)}\")",
+      "PowerShell(Get-ChildItem -Recurse -Depth 2 | Where-Object { $_.PSIsContainer } | Select-Object FullName)",
+      "Bash(Test-Path *)",
+      "Bash(python -c ' *)",
+      "PowerShell(cd \"C:\\\\Users\\\\Quick tech\\\\kidsheaven\"; Get-ChildItem -Recurse -Depth 2 | Where-Object { -not $_.PSIsContainer } | Select-Object FullName, Length | Format-Table -AutoSize)",
+      "Bash(curl -s -o /dev/null -w \"Home: %{http_code}\\\\n\" http://127.0.0.1:9292/)",
+      "Bash(curl -s -o /dev/null -w \"Product: %{http_code}\\\\n\" http://127.0.0.1:9292/products/test)",
+      "Bash(curl -s http://127.0.0.1:9292/)"
+    ]
+  }
+}

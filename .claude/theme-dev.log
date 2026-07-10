@@ -1,0 +1,122 @@
+╭─ success ────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  Preview your theme (t)                                                      │
+│    • [1]                                                                     │
+│                                                                              │
+│  Next steps                                                                  │
+│    • Share your theme preview (p) [2]                                        │
+│      https://zart8t-zq.myshopify.com/?preview_theme_id=150551855174          │
+│    • Customize your theme at the theme editor (e) [3]                        │
+│    • Preview your gift cards (g) [4]                                         │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+[1] http://127.0.0.1:9292
+[2] https://zart8t-zq.myshopify.com/?preview_theme_id=150551855174
+[3] https://zart8t-zq.myshopify.com/admin/themes/150551855174/editor?hr=9292
+[4] http://127.0.0.1:9292/gift_cards/[store_id]/preview
+
+• 23:28:12 Request »    GET 200 /pages/contact 
+• 23:28:13 Request »    GET 200 / 
+• 23:28:14 Request »    GET 200 / 
+• 23:28:15 Request »    GET 200 / 
+• 23:28:16 Request »    GET 200 / 
+• 23:28:20 Request »    GET 200 / 
+• 23:28:21 Request »    GET 200 /collections/all 
+• 23:28:36 Request »    GET 200 /search 
+• 23:28:58 Request »    GET 200 /search 
+• 23:29:01 Request »    GET 200 /search 
+• 14:16:10 Request »    GET 401 /collections/all 
+• 14:16:13 Request »    GET 401 /collections/all 
+• 14:16:16 Request »    GET 401 /collections/all 
+• 14:27:05  Synced » update layout/theme.liquid
+• 14:28:58  Synced » update assets/kids-haven.css
+╭─ error ──────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  Failed to delete file "assets/kids-haven.css.tmp.21012.5338aedbf4b4" from   │
+│  remote theme.                                                               │
+│                                                                              │
+│  Failed to delete file "assets/kids-haven.css.tmp.21012.5338aedbf4b4" from   │
+│  remote theme.                                                               │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+• 14:29:06  Synced » update assets/kids-haven.css.tmp.21012.5338aedbf4b4
+• 14:29:06  Synced » update assets/kids-haven.css.tmp.21012.5338aedbf4b4
+• 14:29:58  Synced » update sections/header.liquid
+• 14:30:18  Synced » update sections/header-group.json
+• 14:30:18  Synced » update sections/footer-group.json
+• 14:31:59  Synced » update templates/cart.json
+• 14:31:59  Synced » update templates/collection.json
+╭─ error ──────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  Failed to upload file "templates/product.json" to remote theme.             │
+│                                                                              │
+│  Le type de section « main-product » ne fait pas référence à un fichier de   │
+│  section existant.                                                           │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ error ──────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  Failed to upload file "templates/page.contact.json" to remote theme.        │
+│                                                                              │
+│  Le type de section « contact-form » ne fait pas référence à un fichier de   │
+│  section existant.                                                           │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+• 14:32:00  Synced » update templates/blog.json
+• 14:32:00  Synced » update templates/page.json
+• 14:32:01  Synced » update templates/article.json
+• 14:32:01  Synced » update templates/search.json
+• 14:32:02  Synced » update templates/404.json
+• 14:32:02  Synced » update templates/list-collections.json
+• 14:32:55  Synced » update sections/main-404.liquid
+• 14:33:03  Synced » update sections/main-404.liquid
+• 14:33:23  Synced » update templates/index.json
+╭─ error ──────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  Failed to upload file "templates/product.json" to remote theme.             │
+│                                                                              │
+│  Valeur non valide pour le bloc « main » : le bloc statique avec             │
+│  l'identifiant « media-gallery » ne doit pas être présent dans               │
+│  « block_order ».                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+• 14:57:22  Synced » update templates/product.json
+• 14:57:58  Synced » update templates/page.contact.json
+• 14:59:34 Request »    GET 200 / 
+• 14:59:36 Request »    GET 404 /products/test 
+• 14:59:55 Request »    GET 200 / 
+• 14:59:57 Request »    GET 200 /collections/all 
+• 14:59:57 Request »    GET 200 /cart 
+• 14:59:58 Request »    GET 200 /search 
+• 14:59:59 Request »    GET 200 /pages/contact 
+• 15:00:00 Request »    GET 404 /404 
+• 15:00:01 Request »    GET 302 /account 
+• 15:00:11 Request »    GET 200 / 
+╭─ error ──────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  Failed to render storefront with status 502 (Bad Gateway).                  │
+│  URL: https://zart8t-zq.myshopify.com/?_fd=0&pb=0                            │
+│                                                                              │
+│  TypeError: fetch failed                                                     │
+│      at Object.processResponse (node:internal/deps/undici/undici:12024:20)   │
+│      at node:internal/deps/undici/undici:12405:23                            │
+│      at process.processTicksAndRejections                                    │
+│  (node:internal/process/task_queues:104:5)                                   │
+│      at node:internal/deps/undici/undici:16557:7                             │
+│      at process.processTicksAndRejections                                    │
+│  (node:internal/process/task_queues:104:5)                                   │
+│      at async ze (file:///C:/Users/Quick%20tech/AppData/Roaming/npm/node_mo  │
+│  dules/@shopify/cli/dist/chunk-6YPEONHB.js:12:506)                           │
+│      at async Object.handler (file:///C:/Users/Quick%20tech/AppData/Roaming  │
+│  /npm/node_modules/@shopify/cli/dist/chunk-Q7BOSHWX.js:7:6357)               │
+│      at async Server.<anonymous> (file:///C:/Users/Quick%20tech/AppData/Roa  │
+│  ming/npm/node_modules/@shopify/cli/dist/chunk-Q7BOSHWX.js:7:9903)           │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+• 15:04:11 Request »    GET 200 /search 
+• 15:04:14 Request »    GET 200 /pages/contact 
