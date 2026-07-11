@@ -522,6 +522,7 @@ main#MainContent{
   opacity: .9;
 }
 .kh-hero__wave{
+  position: absolute;
   left: -5%; right: -5%; bottom: -2px; height: 22%;
   background:
     radial-gradient(ellipse 60% 100% at 20% 100%, #2ec4d6 0%, transparent 70%),

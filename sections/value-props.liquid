@@ -19,7 +19,7 @@
     <div class="kh-vp__grid">
       {%- for block in section.blocks -%}
         <article class="kh-vp__card kh-vp__card--{{ block.settings.color }}" data-reveal data-reveal-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
-          <span class="kh-vp__icon" aria-hidden="true">{{ block.settings.icon_svg | raw }}</span>
+          <span class="kh-vp__icon" aria-hidden="true">{{ block.settings.icon_svg }}</span>
           <h3 class="kh-vp__h">{{ block.settings.title }}</h3>
           <p class="kh-vp__p">{{ block.settings.text }}</p>
         </article>

@@ -18,7 +18,7 @@
       {%- for block in section.blocks -%}
         <a class="kh-cat kh-cat--{{ block.settings.color }}" href="{{ block.settings.link | default: '/collections/all' }}"
            data-tilt data-reveal data-reveal-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
-          <span class="kh-cat__icon" aria-hidden="true">{{ block.settings.icon_svg | raw }}</span>
+          <span class="kh-cat__icon" aria-hidden="true">{{ block.settings.icon_svg }}</span>
           <h3 class="kh-cat__title">{{ block.settings.title }}</h3>
           {%- if block.settings.subtitle != blank -%}
             <p class="kh-cat__sub">{{ block.settings.subtitle }}</p>
