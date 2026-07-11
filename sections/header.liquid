@@ -33,29 +33,107 @@
       </a>
 
       <div class="kh-header__right">
-        <a class="kh-icon-btn" href="{{ routes.search_url }}" aria-label="Search">
+        <button class="kh-icon-btn" type="button" aria-label="Search" data-kh-open-search>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/>
           </svg>
-        </a>
+        </button>
         <a class="kh-icon-btn" href="{{ routes.account_url }}" aria-label="Account">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6" stroke-linecap="round"/>
           </svg>
         </a>
-        <a class="kh-icon-btn" href="{{ routes.cart_url }}" aria-label="Cart">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7Z"/>
-            <path d="M9 7a3 3 0 0 1 6 0" stroke-linecap="round"/>
-          </svg>
-          {%- if cart.item_count > 0 -%}
-            <span class="kh-cart-count">{{ cart.item_count }}</span>
-          {%- endif -%}
-        </a>
+        <cart-icon class="header-actions__cart-icon{% if cart.item_count > 0 %} header-actions__cart-icon--has-cart{% endif %}">
+          <button class="kh-icon-btn kh-icon-btn--cart" type="button" aria-label="Cart" id="kh-cart-trigger" aria-haspopup="dialog" aria-controls="kh-cart-drawer" data-testid="cart-drawer-trigger" ref="cartBubble">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7Z"/>
+              <path d="M9 7a3 3 0 0 1 6 0" stroke-linecap="round"/>
+            </svg>
+            <span
+              ref="cartBubbleText"
+              id="cart-bubble-text"
+              class="kh-cart-count{% if cart.item_count == 0 %} visually-hidden{% endif %}"
+            >
+              <span ref="cartBubbleCount" data-testid="cart-bubble">
+                {{- cart.item_count -}}
+              </span>
+            </span>
+          </button>
+        </cart-icon>
       </div>
     </div>
   </div>
 </header>
+
+<cart-drawer-component id="kh-cart-drawer" class="cart-drawer" auto-open>
+  <dialog
+    id="kh-cart-dialog"
+    ref="dialog"
+    class="cart-drawer__dialog dialog-modal dialog-drawer color-scheme-1{% if cart.empty? %} cart-drawer--empty{% endif %}"
+    aria-labelledby="{% if cart.empty? %}kh-cart-heading-empty{% else %}kh-cart-heading{% endif %}"
+    scroll-lock
+  >
+    <span class="visually-hidden" role="status" ref="liveRegion" data-cart-live></span>
+    <div class="cart-drawer__inner" data-hydration-key="cart-drawer-inner">
+      <cart-items-component data-drawer data-section-id="{{ section.id }}">
+        {%- if cart.empty? -%}
+          <div class="cart-drawer__header" id="kh-cart-header-empty">
+            <h2 class="cart-drawer__heading h4" id="kh-cart-heading-empty">{{ 'content.cart_empty' | t: default: 'Your cart is empty' }}</h2>
+            <button type="button" class="kh-drawer__close" data-kh-close-cart aria-label="Close cart">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <div class="cart-drawer__items">
+            <p class="kh-search-overlay__empty" style="padding:32px 16px;">{{ 'content.cart_empty_message' | t: default: 'Add a product to get started.' }}</p>
+            <a href="{{ routes.collections_url | default: '/collections/all' }}" class="kh-btn kh-btn--coral" style="margin:16px auto;display:block;width:max-content;">{{ 'actions.continue_shopping' | t: default: 'Continue shopping' }}</a>
+          </div>
+        {%- else -%}
+          <div class="cart-drawer__header">
+            <h2 class="cart-drawer__heading h4" id="kh-cart-heading">
+              {{ 'content.cart_title' | t: default: 'Your cart' }}
+              <span class="kh-cart-count" style="margin-left:8px;">({{ cart.item_count }})</span>
+            </h2>
+            <button type="button" class="kh-drawer__close" data-kh-close-cart aria-label="Close cart">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <div class="cart-drawer__content">
+            <div class="cart-drawer__items">
+              {%- for item in cart.items -%}
+                <div class="kh-cart-line" style="display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(29,42,58,.08);">
+                  {%- if item.image -%}
+                    <a href="{{ item.url }}" style="flex:0 0 64px;">
+                      {{ item.image | image_url: width: 120 | image_tag: loading: 'lazy', alt: item.title, widths: '80,120,200', sizes: '64px' }}
+                    </a>
+                  {%- endif -%}
+                  <div style="flex:1;min-width:0;">
+                    <a href="{{ item.url }}" style="font-weight:500;color:inherit;text-decoration:none;">{{ item.product.title | escape }}</a>
+                    {%- unless item.product_has_only_default_variant -%}
+                      <div style="font-size:12px;opacity:.7;">{{ item.variant.title }}</div>
+                    {%- endunless -%}
+                    <div style="font-size:13px;margin-top:4px;">{{ item.final_line_price | money }} <span style="opacity:.6;">× {{ item.quantity }}</span></div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+            <div class="cart-drawer__summary" style="padding:16px 0;border-top:2px solid var(--kh-ink,#1d2a3a);margin-top:12px;">
+              <div style="display:flex;justify-content:space-between;font-weight:600;font-size:18px;margin-bottom:12px;">
+                <span>{{ 'content.cart_subtotal' | t: default: 'Subtotal' }}</span>
+                <span>{{ cart.total_price | money }}</span>
+              </div>
+              <form action="{{ routes.cart_url }}" method="post" novalidate>
+                <button type="submit" name="checkout" class="kh-btn kh-btn--coral" style="width:100%;">
+                  {{ 'actions.checkout' | t: default: 'Checkout' }}
+                </button>
+              </form>
+              <a href="{{ routes.cart_url }}" class="kh-btn kh-btn--ghost" style="width:100%;margin-top:8px;display:inline-block;text-align:center;">{{ 'actions.view_cart' | t: default: 'View cart' }}</a>
+            </div>
+          </div>
+        {%- endif -%}
+      </cart-items-component>
+    </div>
+  </dialog>
+</cart-drawer-component>
 
 <div class="kh-drawer" id="KhDrawer" data-kh-drawer>
   <aside class="kh-drawer__panel" role="dialog" aria-label="Menu">
@@ -70,18 +148,143 @@
   </aside>
 </div>
 
+<div class="kh-search-overlay" id="KhSearch" data-kh-search hidden>
+  <div class="kh-search-overlay__panel" role="dialog" aria-label="Search">
+    <button class="kh-search-overlay__close" type="button" aria-label="Close search" data-kh-close-search>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+    </button>
+    <form action="{{ routes.search_url }}" method="get" class="kh-search-overlay__form" role="search" autocomplete="off">
+      <label for="kh-search-input" class="visually-hidden">Search</label>
+      <span class="kh-search-overlay__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg>
+      </span>
+      <input id="kh-search-input" type="search" name="q" placeholder="Search products…" class="kh-search-overlay__input" data-kh-search-input>
+      <button type="submit" class="kh-search-overlay__submit">Search</button>
+    </form>
+    <div class="kh-search-overlay__results" data-kh-search-results aria-live="polite"></div>
+  </div>
+</div>
+
 <script>
   (function () {
     var drawer = document.getElementById('KhDrawer');
-    if (!drawer) return;
-    document.querySelectorAll('[data-kh-open-drawer]').forEach(function (btn) {
-      btn.addEventListener('click', function () { drawer.setAttribute('open', ''); document.body.style.overflow = 'hidden'; });
+    if (drawer) {
+      document.querySelectorAll('[data-kh-open-drawer]').forEach(function (btn) {
+        btn.addEventListener('click', function () { drawer.setAttribute('open', ''); document.body.style.overflow = 'hidden'; });
+      });
+      document.querySelectorAll('[data-kh-close-drawer]').forEach(function (btn) {
+        btn.addEventListener('click', function () { drawer.removeAttribute('open'); document.body.style.overflow = ''; });
+      });
+      drawer.addEventListener('click', function (e) { if (e.target === drawer) { drawer.removeAttribute('open'); document.body.style.overflow = ''; } });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.hasAttribute('open')) { drawer.removeAttribute('open'); document.body.style.overflow = ''; } });
+    }
+
+    // Predictive search overlay
+    var search = document.getElementById('KhSearch');
+    var searchInput = search && search.querySelector('[data-kh-search-input]');
+    var searchResults = search && search.querySelector('[data-kh-search-results]');
+    var searchTimer = null;
+
+    function openSearch() {
+      if (!search) return;
+      search.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      setTimeout(function(){ searchInput && searchInput.focus(); }, 30);
+    }
+    function closeSearch() {
+      if (!search) return;
+      search.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+      if (searchResults) searchResults.innerHTML = '';
+      if (searchInput) searchInput.value = '';
+    }
+
+    document.querySelectorAll('[data-kh-open-search]').forEach(function (btn) {
+      btn.addEventListener('click', openSearch);
     });
-    document.querySelectorAll('[data-kh-close-drawer]').forEach(function (btn) {
-      btn.addEventListener('click', function () { drawer.removeAttribute('open'); document.body.style.overflow = ''; });
+    document.querySelectorAll('[data-kh-close-search]').forEach(function (btn) {
+      btn.addEventListener('click', closeSearch);
     });
-    drawer.addEventListener('click', function (e) { if (e.target === drawer) { drawer.removeAttribute('open'); document.body.style.overflow = ''; } });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.hasAttribute('open')) { drawer.removeAttribute('open'); document.body.style.overflow = ''; } });
+    if (search) {
+      search.addEventListener('click', function (e) {
+        if (e.target === search) closeSearch();
+      });
+    }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && search && !search.hasAttribute('hidden')) closeSearch();
+    });
+
+    function runPredictive(q) {
+      if (!searchResults) return;
+      if (!q || q.length < 2) { searchResults.innerHTML = ''; return; }
+      var url = '{{ routes.predictive_search_url }}?q=' + encodeURIComponent(q) + '&resources[type]=product&resources[limit]=6&sections[]=predictive-search';
+      fetch(url, { credentials: 'same-origin', headers: { 'Accept': 'application/json' } })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+          if (!data || !data.resources || !data.resources.results || !data.resources.results.products) {
+            searchResults.innerHTML = '<p class="kh-search-overlay__empty">No matches for “' + q + '”.</p>';
+            return;
+          }
+          var products = data.resources.results.products;
+          if (!products.length) { searchResults.innerHTML = '<p class="kh-search-overlay__empty">No matches for “' + q + '”.</p>'; return; }
+          var html = '<ul class="kh-search-overlay__list">';
+          products.forEach(function (p){
+            var img = (p.featured_image && p.featured_image.url) ? p.featured_image.url : '';
+            var price = (p.price != null) ? (p.price + ' {{ cart.currency.iso_code | default: "USD" }}') : '';
+            html += '<li class="kh-search-overlay__item">'
+                  +   '<a href="' + p.url + '">'
+                  +     (img ? '<img src="' + img + '" alt="" loading="lazy">' : '<span class="kh-search-overlay__thumb"></span>')
+                  +     '<span class="kh-search-overlay__meta"><strong>' + p.title + '</strong>'
+                  +     (price ? '<span>' + price + '</span>' : '')
+                  +     '</span>'
+                  +   '</a>'
+                  + '</li>';
+          });
+          html += '</ul>';
+          searchResults.innerHTML = html;
+        })
+        .catch(function(){ searchResults.innerHTML = ''; });
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', function () {
+        clearTimeout(searchTimer);
+        var q = searchInput.value.trim();
+        searchTimer = setTimeout(function () { runPredictive(q); }, 180);
+      });
+    }
+
+    // Cart drawer (KH custom)
+    var cartDrawer = document.getElementById('kh-cart-drawer');
+    var cartDialog = document.getElementById('kh-cart-dialog');
+    var cartTrigger = document.getElementById('kh-cart-trigger');
+    function openCart() {
+      if (!cartDialog) return;
+      if (typeof cartDialog.showModal === 'function') {
+        try { cartDialog.showModal(); } catch (e) { cartDialog.setAttribute('open', ''); }
+      } else { cartDialog.setAttribute('open', ''); }
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCart() {
+      if (!cartDialog) return;
+      if (typeof cartDialog.close === 'function' && cartDialog.open) { cartDialog.close(); }
+      else { cartDialog.removeAttribute('open'); }
+      document.body.style.overflow = '';
+    }
+    if (cartTrigger) cartTrigger.addEventListener('click', openCart);
+    document.querySelectorAll('[data-kh-close-cart]').forEach(function (b){ b.addEventListener('click', closeCart); });
+    if (cartDialog) {
+      cartDialog.addEventListener('click', function (e){ if (e.target === cartDialog) closeCart(); });
+    }
+    document.addEventListener('keydown', function (e){
+      if (e.key === 'Escape' && cartDialog && cartDialog.open) closeCart();
+    });
+
+    // Re-attach after Shopify section rendering / cart updates.
+    document.addEventListener('shopify:section:load', function () {
+      var t = document.getElementById('kh-cart-trigger');
+      if (t && !t.__khBound) { t.__khBound = true; t.addEventListener('click', openCart); }
+    });
   })();
 </script>
 

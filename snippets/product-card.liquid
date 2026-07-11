@@ -4,7 +4,8 @@
 {% endcomment %}
 
 <style>
-  .kh-card { display: block; text-decoration: none; color: inherit; }
+  .kh-card { display: block; text-decoration: none; color: inherit; position: relative; }
+  .kh-card__link{ position: absolute; inset: 0; z-index: 1; }
   .kh-card__media {
     position: relative; overflow: hidden;
     background: #EFE7D8; aspect-ratio: 3/4;
@@ -21,13 +22,27 @@
     padding: 6px 10px;
   }
   .kh-card__body { padding: 16px 4px 0; text-align: center; }
-  .kh-card__title { font-size: 14px; letter-spacing: .06em; margin: 0 0 6px; font-weight: 500; }
+  .kh-card__title-link{ text-decoration: none; color: inherit; }
+  .kh-card__title { font-size: 14px; letter-spacing: .06em; margin: 0 0 6px; font-weight: 500; position: relative; z-index: 2; pointer-events: none; }
   .kh-card__price { font-size: 13px; opacity: .8; }
   .kh-card__price s { opacity: .5; margin-right: 6px; }
+  .kh-card__atc{
+    position: relative; z-index: 2;
+    margin-top: 10px; width: 100%;
+    background: #1F1A16; color: #fff;
+    border: 0; padding: 10px 12px;
+    font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+    border-radius: 4px; cursor: pointer;
+    transition: background .2s ease;
+  }
+  .kh-card__atc:hover{ background: #ff6f5e; }
+  .kh-card__atc--soldout{ background: #ddd; color: #888; cursor: not-allowed; }
 </style>
 
 {%- if product and product != blank -%}
-  <a class="kh-card" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+  {%- assign first_available = product.selected_or_first_available_variant -%}
+  <div class="kh-card">
+    <a class="kh-card__link" href="{{ product.url }}" aria-label="{{ product.title | escape }}"></a>
     <div class="kh-card__media">
       {%- if product.compare_at_price > product.price -%}
         <span class="kh-card__badge" style="color: {{ accent }};">{{ 'product.sale' | t }}</span>
@@ -44,15 +59,39 @@
       {%- endif -%}
     </div>
     <div class="kh-card__body">
-      <h3 class="kh-card__title">{{ product.title }}</h3>
+      <a class="kh-card__title-link" href="{{ product.url }}">
+        <h3 class="kh-card__title">{{ product.title }}</h3>
+      </a>
       <div class="kh-card__price">
         {%- if product.compare_at_price > product.price -%}
           <s>{{ product.compare_at_price | money }}</s>
         {%- endif -%}
         {{ product.price | money }}
       </div>
+      {%- if first_available.available -%}
+        <product-form-component
+          data-section-id="{{ section.id | default: 'product-card' }}"
+          data-product-id="{{ product.id }}"
+          data-product-url="{{ product.url }}"
+          on:submit="/handleSubmit"
+          data-quantity-default="1"
+          data-quantity-error-max="{{ 'products.product.quantity_error_max' | t }}"
+        >
+          <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
+          {%- form 'product', product, id: nil, class: 'kh-card__form', data-type: 'add-to-cart-form' -%}
+            <input type="hidden" name="id" ref="variantId" value="{{ first_available.id }}">
+            {%- render 'add-to-cart-button',
+                can_add_to_cart: true,
+                product: product,
+                class: 'kh-card__atc'
+            -%}
+          {%- endform -%}
+        </product-form-component>
+      {%- else -%}
+        <button type="button" class="kh-card__atc kh-card__atc--soldout" disabled>{{ 'product.sold_out' | t | default: 'Sold out' }}</button>
+      {%- endif -%}
     </div>
-  </a>
+  </div>
 {%- else -%}
   <div class="kh-card" aria-hidden="true">
     <div class="kh-card__media"></div>

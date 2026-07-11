@@ -27,7 +27,9 @@
     <div class="kh-products">
       {%- if collection and collection.products.size > 0 -%}
         {%- for product in collection.products limit: limit -%}
-          <a class="kh-card" href="{{ product.url }}" data-reveal data-reveal-delay="{{ forloop.index | modulo: 4 | plus: 1 }}">
+          {%- assign first_available = product.selected_or_first_available_variant -%}
+          <div class="kh-card" data-reveal data-reveal-delay="{{ forloop.index | modulo: 4 | plus: 1 }}">
+            <a class="kh-card__link" href="{{ product.url }}" aria-label="{{ product.title | escape }}"></a>
             <div class="kh-card__media">
               {%- if product.featured_image != blank -%}
                 {{ product.featured_image | image_url: width: 800 | image_tag:
@@ -46,12 +48,11 @@
               {%- elsif product.tags contains 'new' -%}
                 <span class="kh-card__badge" style="background:var(--kh-sunny);color:var(--kh-ink);box-shadow:0 8px 24px -8px rgba(240,180,0,.6);">New</span>
               {%- endif -%}
-              <button type="button" class="kh-card__quick" aria-label="Quick add to cart" data-quick-add="{{ product.handle }}">
-                Quick add
-              </button>
             </div>
             <div class="kh-card__body">
-              <h3 class="kh-card__title">{{ product.title }}</h3>
+              <a class="kh-card__title-link" href="{{ product.url }}">
+                <h3 class="kh-card__title">{{ product.title }}</h3>
+              </a>
               <div class="kh-card__price">
                 {%- if product.compare_at_price > product.price -%}
                   <s>{{ product.compare_at_price | money }}</s>
@@ -60,18 +61,44 @@
                   {{ product.price | money }}
                 {%- endif -%}
               </div>
+              {%- if first_available.available -%}
+                <product-form-component
+                  data-section-id="{{ section.id }}"
+                  data-product-id="{{ product.id }}"
+                  data-product-url="{{ product.url }}"
+                  on:submit="/handleSubmit"
+                  data-quantity-default="1"
+                  data-quantity-error-max="{{ 'products.product.quantity_error_max' | t }}"
+                >
+                  <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
+                  {%- form 'product', product, id: nil, class: 'kh-card__form', data-type: 'add-to-cart-form' -%}
+                    <input type="hidden" name="id" ref="variantId" value="{{ first_available.id }}">
+                    {%- render 'add-to-cart-button',
+                        can_add_to_cart: true,
+                        product: product,
+                        add_to_cart_text: section.settings.add_to_cart_label,
+                        class: 'kh-card__atc'
+                    -%}
+                  {%- endform -%}
+                </product-form-component>
+              {%- else -%}
+                <button type="button" class="kh-card__atc kh-card__atc--soldout" disabled>
+                  {{ 'product.sold_out' | t | default: 'Sold out' }}
+                </button>
+              {%- endif -%}
             </div>
-          </a>
+          </div>
         {%- endfor -%}
       {%- else -%}
         {%- for i in (1..limit) -%}
-          <a class="kh-card" href="/collections/all" aria-hidden="true" data-reveal data-reveal-delay="{{ forloop.index | modulo: 4 | plus: 1 }}">
+          <div class="kh-card" aria-hidden="true" data-reveal data-reveal-delay="{{ forloop.index | modulo: 4 | plus: 1 }}">
             <div class="kh-card__media" style="background:var(--kh-sand)"></div>
             <div class="kh-card__body">
               <h3 class="kh-card__title">Sample product</h3>
               <div class="kh-card__price">{{ 1999 | money }}</div>
+              <button type="button" class="kh-card__atc" disabled>Add to cart</button>
             </div>
-          </a>
+          </div>
         {%- endfor -%}
       {%- endif -%}
     </div>
@@ -100,6 +127,7 @@
     { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 4, "max": 12, "step": 1, "default": 8 },
     { "type": "checkbox", "id": "show_view_all", "label": "Show 'View all' button", "default": true },
     { "type": "text", "id": "view_all_label", "label": "View all label", "default": "Shop the full collection" },
+    { "type": "text", "id": "add_to_cart_label", "label": "Add to cart button label", "default": "Add to cart" },
     { "type": "select", "id": "background", "label": "Background",
       "options": [
         { "value": "cream", "label": "Sand/cream" },

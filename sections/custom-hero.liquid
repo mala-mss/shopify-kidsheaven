@@ -5,7 +5,66 @@
 {%- endcomment -%}
 
 <section class="kh-hero" aria-label="Hero">
-  <div class="kh-hero__decor kh-hero__sun" aria-hidden="true"></div>
+  <div class="kh-hero__decor kh-hero__sun-wrap" aria-hidden="true">
+    <svg class="kh-hero__sun" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="khSunFace" cx="38%" cy="35%" r="75%">
+          <stop offset="0%" stop-color="#fff7c2"/>
+          <stop offset="40%" stop-color="#ffd23f"/>
+          <stop offset="80%" stop-color="#ff9a2e"/>
+          <stop offset="100%" stop-color="#ff6f5e"/>
+        </radialGradient>
+      </defs>
+      <g class="kh-hero__rays" stroke="#1d2a3a" stroke-width="5" stroke-linecap="round" fill="none">
+        {#- thick uneven kid-drawn rays, alternating long/short, wobble for hand-drawn feel -#}
+        <path d="M120 8 L116 44" stroke="#ffb627" stroke-width="9"/>
+        <path d="M120 8 L120 44" stroke="#1d2a3a" stroke-width="4"/>
+
+        <path d="M196 18 L168 50" stroke="#ffb627" stroke-width="9"/>
+        <path d="M196 18 L168 50" stroke="#1d2a3a" stroke-width="4"/>
+
+        <path d="M44 18 L72 50" stroke="#ff9a2e" stroke-width="9"/>
+        <path d="M44 18 L72 50" stroke="#1d2a3a" stroke-width="4"/>
+
+        <path d="M228 76 L196 92" stroke="#ffb627" stroke-width="9"/>
+        <path d="M228 76 L196 92" stroke="#1d2a3a" stroke-width="4"/>
+
+        <path d="M12 76 L44 92" stroke="#ff9a2e" stroke-width="9"/>
+        <path d="M12 76 L44 92" stroke="#1d2a3a" stroke-width="4"/>
+
+        <path d="M232 150 L200 142" stroke="#ffb627" stroke-width="9"/>
+        <path d="M232 150 L200 142" stroke="#1d2a3a" stroke-width="4"/>
+
+        <path d="M8 150 L40 142" stroke="#ff9a2e" stroke-width="9"/>
+        <path d="M8 150 L40 142" stroke="#1d2a3a" stroke-width="4"/>
+
+        <path d="M210 214 L180 188" stroke="#ffb627" stroke-width="9"/>
+        <path d="M210 214 L180 188" stroke="#1d2a3a" stroke-width="4"/>
+
+        <path d="M30 214 L60 188" stroke="#ff9a2e" stroke-width="9"/>
+        <path d="M30 214 L60 188" stroke="#1d2a3a" stroke-width="4"/>
+
+        {#- short stubby rays for the kid-drawing wobble -#}
+        <path d="M158 14 L150 32" stroke="#1d2a3a" stroke-width="4"/>
+        <path d="M82 14 L90 32" stroke="#1d2a3a" stroke-width="4"/>
+        <path d="M158 226 L150 208" stroke="#1d2a3a" stroke-width="4"/>
+        <path d="M82 226 L90 208" stroke="#1d2a3a" stroke-width="4"/>
+      </g>
+      <circle cx="120" cy="120" r="78" fill="url(#khSunFace)" stroke="#1d2a3a" stroke-width="5"/>
+      <circle cx="120" cy="120" r="78" fill="none" stroke="#ff6f5e" stroke-width="2.5" stroke-dasharray="4 6" opacity=".5"/>
+      <g class="kh-hero__face" transform="translate(120 120)">
+        {#- cheeky smiley face: round black eyes with shine, big curved smile -#}
+        <circle cx="-24" cy="-10" r="9" fill="#1d2a3a"/>
+        <circle cx="24" cy="-10" r="9" fill="#1d2a3a"/>
+        <circle cx="-21" cy="-13" r="3" fill="#fff"/>
+        <circle cx="27" cy="-13" r="3" fill="#fff"/>
+        <path d="M -28 14 Q 0 42 28 14" fill="#1d2a3a" stroke="#1d2a3a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M -28 14 Q 0 42 28 14" fill="none" stroke="#ff6f5e" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+        <ellipse cx="-38" cy="6" rx="10" ry="5" fill="#ff6f5e" opacity=".6"/>
+        <ellipse cx="38" cy="6" rx="10" ry="5" fill="#ff6f5e" opacity=".6"/>
+      </g>
+    </svg>
+  </div>
 
   <svg class="kh-decor-svg kh-hero__shell" viewBox="0 0 100 100" aria-hidden="true">
     <defs>
@@ -29,6 +88,81 @@
     <path d="M30 70 Q60 30 90 70" fill="#fff8ec" opacity=".9"/>
     <path d="M30 70 Q60 30 90 70" fill="none" stroke="#1d2a3a" stroke-width="1.5"/>
     <line x1="60" y1="70" x2="60" y2="115" stroke="#1d2a3a" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+
+  <svg class="kh-decor-svg kh-hero__star" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M50 8 L61 38 L92 38 L67 56 L78 86 L50 68 L22 86 L33 56 L8 38 L39 38 Z"
+          fill="#ff7aa8" stroke="#1d2a3a" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="40" cy="42" r="3" fill="#fff8ec"/>
+  </svg>
+
+  <svg class="kh-decor-svg kh-hero__ball" viewBox="0 0 100 100" aria-hidden="true">
+    <defs>
+      <radialGradient id="ballG" cx="35%" cy="35%" r="70%">
+        <stop offset="0%" stop-color="#fff8ec"/>
+        <stop offset="50%" stop-color="#ff6f5e"/>
+        <stop offset="100%" stop-color="#e0463b"/>
+      </radialGradient>
+    </defs>
+    <circle cx="50" cy="50" r="38" fill="url(#ballG)" stroke="#1d2a3a" stroke-width="3"/>
+    <path d="M14 50 Q50 30 86 50" fill="none" stroke="#fff8ec" stroke-width="4" stroke-linecap="round"/>
+    <path d="M14 50 Q50 70 86 50" fill="none" stroke="#fff8ec" stroke-width="4" stroke-linecap="round"/>
+    <line x1="50" y1="12" x2="50" y2="88" stroke="#fff8ec" stroke-width="4" stroke-linecap="round"/>
+    <path d="M22 28 Q50 50 78 28" fill="none" stroke="#1d2a3a" stroke-width="2.5"/>
+    <path d="M22 72 Q50 50 78 72" fill="none" stroke="#1d2a3a" stroke-width="2.5"/>
+  </svg>
+
+  <svg class="kh-decor-svg kh-hero__castle" viewBox="0 0 120 100" aria-hidden="true">
+    <defs>
+      <linearGradient id="sandG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#ffe9c2"/>
+        <stop offset="100%" stop-color="#ffc78a"/>
+      </linearGradient>
+    </defs>
+    <path d="M10 90 L10 50 L22 50 L22 38 L32 38 L32 50 L46 50 L46 32 L56 32 L56 50 L70 50 L70 38 L80 38 L80 50 L92 50 L92 28 L102 28 L102 50 L110 50 L110 90 Z"
+          fill="url(#sandG)" stroke="#1d2a3a" stroke-width="3" stroke-linejoin="round"/>
+    <rect x="50" y="60" width="20" height="30" fill="#1d2a3a"/>
+    <circle cx="60" cy="74" r="2" fill="#ffd23f"/>
+    <line x1="10" y1="92" x2="110" y2="92" stroke="#1d2a3a" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+
+  <svg class="kh-decor-svg kh-hero__wave-doodle" viewBox="0 0 200 60" aria-hidden="true">
+    <path d="M5 30 Q 25 5 50 30 T 100 30 T 150 30 T 195 30"
+          fill="none" stroke="#2ec4d6" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M5 45 Q 25 25 50 45 T 100 45 T 150 45 T 195 45"
+          fill="none" stroke="#1aa3b3" stroke-width="2.5" stroke-linecap="round" opacity=".7"/>
+  </svg>
+
+  <svg class="kh-decor-svg kh-hero__wave-doodle kh-hero__wave-doodle--2" viewBox="0 0 200 60" aria-hidden="true">
+    <path d="M5 30 Q 25 8 50 30 T 100 30 T 150 30 T 195 30"
+          fill="none" stroke="#2ec4d6" stroke-width="3" stroke-linecap="round" opacity=".85"/>
+  </svg>
+
+  <svg class="kh-decor-svg kh-hero__starfish" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M50 6
+             C58 28 72 32 94 50
+             C72 68 58 72 50 94
+             C42 72 28 68 6 50
+             C28 32 42 28 50 6 Z"
+          fill="#ff7aa8" stroke="#1d2a3a" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="40" cy="42" r="2.5" fill="#fff8ec"/>
+    <circle cx="58" cy="44" r="2.5" fill="#fff8ec"/>
+    <circle cx="50" cy="62" r="2.5" fill="#fff8ec"/>
+    <circle cx="34" cy="58" r="2" fill="#fff8ec"/>
+    <circle cx="64" cy="58" r="2" fill="#fff8ec"/>
+  </svg>
+
+  <svg class="kh-decor-svg kh-hero__shell-mini" viewBox="0 0 80 80" aria-hidden="true">
+    <defs>
+      <linearGradient id="shellMiniG" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#ffd23f"/>
+        <stop offset="100%" stop-color="#ff6f5e"/>
+      </linearGradient>
+    </defs>
+    <path d="M40 8 C56 8 72 24 72 44 C72 60 56 72 40 72 C24 72 8 60 8 44 C8 24 24 8 40 8 Z"
+          fill="url(#shellMiniG)" stroke="#1d2a3a" stroke-width="2.5"/>
+    <path d="M40 8 L40 72 M40 16 L62 40 M40 16 L18 40 M40 16 L66 56 M40 16 L14 56"
+          stroke="#1d2a3a" stroke-width="1.4" fill="none" stroke-linecap="round"/>
   </svg>
 
   <div class="kh-hero__inner kh-reveal">

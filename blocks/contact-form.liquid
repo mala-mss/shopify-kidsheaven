@@ -24,7 +24,7 @@
       value="{{ form_id }}"
     >
 
-    {%- if form.errors and form.id == form_id -%}
+    {%- if form.errors -%}
       <div
         class="contact-form__error"
         tabindex="-1"
@@ -37,7 +37,7 @@
       </div>
     {%- endif -%}
 
-    {%- if form.posted_successfully? and form.id == form_id -%}
+    {%- if form.posted_successfully? -%}
       <div
         class="contact-form__success"
         tabindex="-1"

@@ -11,6 +11,11 @@
         <h3 class="kh-footer__brand">{{ shop.name }}</h3>
         <p class="kh-footer__tagline">{{ section.settings.tagline }}</p>
         <div class="kh-footer__socials">
+          {%- if section.settings.facebook != blank -%}
+            <a href="{{ section.settings.facebook }}" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06A10 10 0 1 0 10.4 22v-7.03H7.9v-2.9h2.5V9.83c0-2.47 1.47-3.83 3.7-3.83 1.07 0 2.2.19 2.2.19v2.42h-1.24c-1.22 0-1.6.76-1.6 1.54v1.85h2.72l-.43 2.9h-2.29V22A10 10 0 0 0 22 12.06Z"/></svg>
+            </a>
+          {%- endif -%}
           {%- if section.settings.instagram != blank -%}
             <a href="{{ section.settings.instagram }}" aria-label="Instagram">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
@@ -74,6 +79,7 @@
       "default": "A beach club for kids — colorful, sun-safe, made to last more than one summer." },
     { "type": "text", "id": "address", "label": "Address", "default": "Coastal studio, CA" },
     { "type": "text", "id": "email",   "label": "Email",   "default": "hello@kidshaven.com" },
+    { "type": "url",  "id": "facebook",   "label": "Facebook" },
     { "type": "url",  "id": "instagram", "label": "Instagram" },
     { "type": "url",  "id": "tiktok",    "label": "TikTok" },
     { "type": "url",  "id": "pinterest", "label": "Pinterest" },
