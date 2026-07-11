@@ -21,7 +21,7 @@
 
     {{ content_for_header }}
   </head>
-  <body class="template-{{ template | split: '.' | first }} kh-body">
+  <body class="template-{{ template | replace: '.', '-' | replace: '/', '-' }} kh-body">
     <a class="visually-hidden" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
     {% sections 'header-group' %}
     <main id="MainContent" role="main">

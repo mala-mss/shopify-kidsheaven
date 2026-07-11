@@ -10,14 +10,86 @@
         "subheading": "Colorful, sun-safe, ready for everything summer throws at them. Kid's Haven is a beach club for the small ones — playful, premium, built to last.",
         "button_label": "Shop the summer",
         "secondary_label": "See the story"
-      }
+      },
+      "blocks": {
+        "chip_sun": {
+          "type": "chip",
+          "settings": {
+            "emoji": "☼",
+            "text": "UPF 50+ sun-safe"
+          }
+        },
+        "chip_dry": {
+          "type": "chip",
+          "settings": {
+            "emoji": "✦",
+            "text": "Quick-dry fabric"
+          }
+        },
+        "chip_ethical": {
+          "type": "chip",
+          "settings": {
+            "emoji": "♥",
+            "text": "Ethically made"
+          }
+        }
+      },
+      "block_order": [
+        "chip_sun",
+        "chip_dry",
+        "chip_ethical"
+      ]
     },
     "categories": {
       "type": "kh-categories",
       "settings": {
         "heading": "Pick their summer mood.",
         "subheading": "From the first splash to the last ice cream — every piece is made for the season."
-      }
+      },
+      "blocks": {
+        "cat_swimwear": {
+          "type": "category",
+          "settings": {
+            "title": "Swimwear",
+            "subtitle": "Splashes, pools, salty hair.",
+            "color": "coral",
+            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M2 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0'/><path d='M2 22c2-2 4-2 6 0s4 2 6 0 4-2 6 0'/><circle cx='12' cy='7' r='3'/></svg>"
+          }
+        },
+        "cat_hats": {
+          "type": "category",
+          "settings": {
+            "title": "Sun Hats",
+            "subtitle": "Shade that looks cute.",
+            "color": "turq",
+            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 14a9 9 0 0 1 18 0Z'/><path d='M3 14h18'/><path d='M12 5v9'/></svg>"
+          }
+        },
+        "cat_coverups": {
+          "type": "category",
+          "settings": {
+            "title": "Cover-Ups",
+            "subtitle": "Beach to ice-cream runs.",
+            "color": "yellow",
+            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 3h12l2 6-4 2v10H8V11L4 9Z'/></svg>"
+          }
+        },
+        "cat_sandals": {
+          "type": "category",
+          "settings": {
+            "title": "Sandals",
+            "subtitle": "Hot sand? No problem.",
+            "color": "sand",
+            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 17h18l-3-7-3 3-3-5-3 5-3-3Z'/></svg>"
+          }
+        }
+      },
+      "block_order": [
+        "cat_swimwear",
+        "cat_hats",
+        "cat_coverups",
+        "cat_sandals"
+      ]
     },
     "value-props": {
       "type": "value-props",
@@ -25,7 +97,51 @@
         "eyebrow": "Made for the beach, gentle on skin",
         "title": "Little details, big summers.",
         "subtitle": "Every piece is engineered for real-world play — not just photo ops."
-      }
+      },
+      "blocks": {
+        "vp_sun": {
+          "type": "value",
+          "settings": {
+            "title": "UPF 50+ sun-safe",
+            "text": "Certified fabric blocks 98% of UV.",
+            "color": "coral",
+            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='4'/><path d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41'/></svg>"
+          }
+        },
+        "vp_dry": {
+          "type": "value",
+          "settings": {
+            "title": "Quick-dry magic",
+            "text": "Out of the water, into the sandbox — no soggy kid for long.",
+            "color": "turq",
+            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 3v6M12 21v-6M3 12h6M21 12h-6M5.6 5.6l4.2 4.2M18.4 18.4l-4.2-4.2M5.6 18.4l4.2-4.2M18.4 5.6l-4.2 4.2'/></svg>"
+          }
+        },
+        "vp_ethical": {
+          "type": "value",
+          "settings": {
+            "title": "Ethically made",
+            "text": "Fair-wage workshops, OEKO-TEX certified fabrics, low-impact dyes.",
+            "color": "yellow",
+            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/></svg>"
+          }
+        },
+        "vp_comfy": {
+          "type": "value",
+          "settings": {
+            "title": "Comfy, room to grow",
+            "text": "Adjustable straps, soft seams, fits that last more than one summer.",
+            "color": "ink",
+            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z'/></svg>"
+          }
+        }
+      },
+      "block_order": [
+        "vp_sun",
+        "vp_dry",
+        "vp_ethical",
+        "vp_comfy"
+      ]
     },
     "featured-collection": {
       "type": "featured-collection",
@@ -55,7 +171,38 @@
         "eyebrow": "Beach diaries",
         "title": "Real kids, real summer.",
         "subtitle": "Snapshots from the families already living in Kid's Haven this season."
-      }
+      },
+      "blocks": {
+        "t_maya": {
+          "type": "quote",
+          "settings": {
+            "quote": "We bought one swimsuit to test. We now own four. The UPF is real and the patterns are chef's kiss.",
+            "author": "Maya R.",
+            "location": "Los Angeles, CA"
+          }
+        },
+        "t_daniel": {
+          "type": "quote",
+          "settings": {
+            "quote": "My daughter wore her cover-up straight from the beach to dinner. Got three compliments before dessert.",
+            "author": "Daniel K.",
+            "location": "Lisbon, PT"
+          }
+        },
+        "t_aisha": {
+          "type": "quote",
+          "settings": {
+            "quote": "Finally — kids' beach clothes that don't look like a cartoon. Premium feel, fun colors, perfect fit.",
+            "author": "Aisha B.",
+            "location": "Dubai, AE"
+          }
+        }
+      },
+      "block_order": [
+        "t_maya",
+        "t_daniel",
+        "t_aisha"
+      ]
     },
     "newsletter": {
       "type": "newsletter",
