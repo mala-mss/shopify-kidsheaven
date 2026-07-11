@@ -73,7 +73,8 @@
     "featured_product": "精選商品",
     "search_suggestions_available": "可用於「{{ query }}」的搜尋建議",
     "price_filter_low": "低價",
-    "price_filter_high": "高價"
+    "price_filter_high": "高價",
+    "skip_to_content": "Skip to content"
   },
   "actions": {
     "add_to_cart": "加入購物車",
@@ -115,7 +116,9 @@
     "show_all_options": "顯示所有選項",
     "open": "開啟",
     "back_to": "返回「{{ title }}」",
-    "zoom_media": "Zoom 多媒體檔案 {{ index }}"
+    "zoom_media": "Zoom 多媒體檔案 {{ index }}",
+    "checkout": "Checkout",
+    "view_cart": "View cart"
   },
   "content": {
     "reviews": "評論數",
@@ -272,7 +275,10 @@
       "other": "{{ count }} 個品項已加入購物車"
     },
     "item_count_cutoff": "超過 {{ count }} 個品項",
-    "quick_order_list": "快速訂購清單"
+    "quick_order_list": "快速訂購清單",
+    "cart_empty": "Your cart is empty",
+    "cart_empty_message": "Add a product to get started.",
+    "product_badge_new": "New"
   },
   "gift_cards": {
     "issued": {
@@ -338,6 +344,11 @@
       "in_cart": "在購物車中",
       "default_title": "預設標題",
       "sticky_add_to_cart": "快速加入購物車列"
+    }
+  },
+  "general": {
+    "newsletter": {
+      "success": "Thanks for subscribing!"
     }
   }
 }

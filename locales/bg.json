@@ -73,7 +73,8 @@
     "featured_product": "Представен продукт",
     "search_suggestions_available": "Налични са предложения за търсене за „{{ query }}“",
     "price_filter_low": "Ниска цена",
-    "price_filter_high": "Висока цена"
+    "price_filter_high": "Висока цена",
+    "skip_to_content": "Skip to content"
   },
   "actions": {
     "add_to_cart": "Добавяне към количката",
@@ -115,7 +116,9 @@
     "show_all_options": "Показване на всички опции",
     "open": "Отваряне",
     "back_to": "Назад към {{ title }}",
-    "zoom_media": "Увеличаване на мултимедия {{ index }}"
+    "zoom_media": "Увеличаване на мултимедия {{ index }}",
+    "checkout": "Checkout",
+    "view_cart": "View cart"
   },
   "content": {
     "reviews": "мнения",
@@ -272,7 +275,10 @@
       "one": "1 артикул е добавен в количката",
       "other": "{{ count }} артикула са добавени в количката"
     },
-    "quick_order_list": "Бърз списък с поръчки"
+    "quick_order_list": "Бърз списък с поръчки",
+    "cart_empty": "Your cart is empty",
+    "cart_empty_message": "Add a product to get started.",
+    "product_badge_new": "New"
   },
   "gift_cards": {
     "issued": {
@@ -338,6 +344,11 @@
       "post": "Публикуване на коментар",
       "success_moderated": "Коментарът е публикуван, в очакване на модериране",
       "success": "Коментарът е публикуван"
+    }
+  },
+  "general": {
+    "newsletter": {
+      "success": "Thanks for subscribing!"
     }
   }
 }

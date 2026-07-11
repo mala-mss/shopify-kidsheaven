@@ -73,7 +73,8 @@
     "active_filters": "アクティブな絞り込み：",
     "search_suggestions_available": "「{{ query }}」の検索候補が利用可能",
     "price_filter_low": "低価格",
-    "price_filter_high": "高価格"
+    "price_filter_high": "高価格",
+    "skip_to_content": "Skip to content"
   },
   "actions": {
     "add_to_cart": "カートに追加",
@@ -115,7 +116,9 @@
     "show_all_options": "すべてのオプションを表示する",
     "open": "オープン",
     "back_to": "{{ title }} に戻る",
-    "zoom_media": "ズームメディア {{ index }}"
+    "zoom_media": "ズームメディア {{ index }}",
+    "checkout": "Checkout",
+    "view_cart": "View cart"
   },
   "content": {
     "reviews": "レビュー",
@@ -272,7 +275,10 @@
       "one": "1個のアイテムがカートに追加されました",
       "other": "{{ count }}個のアイテムがカートに追加されました"
     },
-    "quick_order_list": "クイック注文リスト"
+    "quick_order_list": "クイック注文リスト",
+    "cart_empty": "Your cart is empty",
+    "cart_empty_message": "Add a product to get started.",
+    "product_badge_new": "New"
   },
   "gift_cards": {
     "issued": {
@@ -338,6 +344,11 @@
       "post": "コメントを投稿する",
       "success_moderated": "コメントを投稿しました。承認待ちです",
       "success": "コメントを投稿しました"
+    }
+  },
+  "general": {
+    "newsletter": {
+      "success": "Thanks for subscribing!"
     }
   }
 }

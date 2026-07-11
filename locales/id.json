@@ -73,7 +73,8 @@
     "show_product_details": "Tampilkan detail produk untuk {{ product_name }}",
     "search_suggestions_available": "Cari rekomendasi yang tersedia untuk \"{{ query }}\"",
     "price_filter_low": "Harga rendah",
-    "price_filter_high": "Harga tinggi"
+    "price_filter_high": "Harga tinggi",
+    "skip_to_content": "Skip to content"
   },
   "actions": {
     "add_to_cart": "Tambahkan ke keranjang",
@@ -115,7 +116,9 @@
     "show_all_options": "Tampilkan semua opsi",
     "open": "Buka",
     "back_to": "Kembali ke {{ title }}",
-    "zoom_media": "Perbesar media {{ index }}"
+    "zoom_media": "Perbesar media {{ index }}",
+    "checkout": "Checkout",
+    "view_cart": "View cart"
   },
   "content": {
     "reviews": "ulasan",
@@ -272,7 +275,10 @@
       "one": "1 item ditambahkan ke keranjang",
       "other": "{{ count }} item ditambahkan ke keranjang"
     },
-    "quick_order_list": "Daftar pesanan cepat"
+    "quick_order_list": "Daftar pesanan cepat",
+    "cart_empty": "Your cart is empty",
+    "cart_empty_message": "Add a product to get started.",
+    "product_badge_new": "New"
   },
   "gift_cards": {
     "issued": {
@@ -338,6 +344,11 @@
       "post": "Posting komentar",
       "success_moderated": "Komentar diposting, menunggu moderasi",
       "success": "Komentar diposting"
+    }
+  },
+  "general": {
+    "newsletter": {
+      "success": "Thanks for subscribing!"
     }
   }
 }

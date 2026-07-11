@@ -75,7 +75,8 @@
     "featured_product": "Rekomenduojamas produktas",
     "search_suggestions_available": "Galimi paieškos pasiūlymai pagal „{{ query }}“",
     "price_filter_low": "Žema kaina",
-    "price_filter_high": "Aukšta kaina"
+    "price_filter_high": "Aukšta kaina",
+    "skip_to_content": "Skip to content"
   },
   "actions": {
     "add_to_cart": "Įdėti į krepšelį",
@@ -119,7 +120,9 @@
     "show_all_options": "Rodyti visus variantus",
     "open": "Atidaryti",
     "back_to": "Grįžti į „{{ title }}“",
-    "zoom_media": "Padidinti mediją {{ index }}"
+    "zoom_media": "Padidinti mediją {{ index }}",
+    "checkout": "Checkout",
+    "view_cart": "View cart"
   },
   "content": {
     "reviews": "apžvalgos (-ų; -a)",
@@ -284,7 +287,10 @@
       "many": "{{ count }} prekių pridėta prie krepšelio"
     },
     "item_count_cutoff": "Daugiau kaip {{ count }} prekės (-ių)",
-    "quick_order_list": "Greito užsakymo sąrašas"
+    "quick_order_list": "Greito užsakymo sąrašas",
+    "cart_empty": "Your cart is empty",
+    "cart_empty_message": "Add a product to get started.",
+    "product_badge_new": "New"
   },
   "gift_cards": {
     "issued": {
@@ -352,6 +358,11 @@
       "in_cart": "krepšelyje",
       "default_title": "Numatytasis pavadinimas",
       "sticky_add_to_cart": "Greito pridėjimo į krepšelį juosta"
+    }
+  },
+  "general": {
+    "newsletter": {
+      "success": "Thanks for subscribing!"
     }
   }
 }

@@ -73,7 +73,8 @@
     "featured_product": "สินค้าแนะนำ",
     "search_suggestions_available": "ค้นหาคำแนะนำสำหรับ \"{{ query }}\" ที่พร้อมใช้งาน",
     "price_filter_low": "ราคาประหยัด",
-    "price_filter_high": "ราคาแพง"
+    "price_filter_high": "ราคาแพง",
+    "skip_to_content": "Skip to content"
   },
   "actions": {
     "add_to_cart": "เพิ่มลงในตะกร้าสินค้า",
@@ -115,7 +116,9 @@
     "show_all_options": "แสดงตัวเลือกทั้งหมด",
     "open": "เปิด",
     "back_to": "กลับไปที่ {{ title }}",
-    "zoom_media": "ซูมสื่อ {{ index }}"
+    "zoom_media": "ซูมสื่อ {{ index }}",
+    "checkout": "Checkout",
+    "view_cart": "View cart"
   },
   "content": {
     "reviews": "รีวิว",
@@ -272,7 +275,10 @@
       "one": "เพิ่มสินค้า 1 รายการลงในตะกร้าแล้ว",
       "other": "เพิ่มสินค้า {{ count }} รายการลงในตะกร้า"
     },
-    "quick_order_list": "รายการคำสั่งซื้อด่วน"
+    "quick_order_list": "รายการคำสั่งซื้อด่วน",
+    "cart_empty": "Your cart is empty",
+    "cart_empty_message": "Add a product to get started.",
+    "product_badge_new": "New"
   },
   "gift_cards": {
     "issued": {
@@ -338,6 +344,11 @@
       "post": "โพสต์ความคิดเห็น",
       "success_moderated": "ความคิดเห็นถูกโพสต์แล้ว กำลังรอการตรวจสอบ",
       "success": "ความคิดเห็นถูกโพสต์แล้ว"
+    }
+  },
+  "general": {
+    "newsletter": {
+      "success": "Thanks for subscribing!"
     }
   }
 }

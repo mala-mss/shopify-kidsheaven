@@ -73,7 +73,8 @@
     "featured_product": "추천 제품",
     "search_suggestions_available": "\"{{ query }}\"에 대한 검색 제안이 있습니다",
     "price_filter_low": "낮은 가격",
-    "price_filter_high": "높은 가격"
+    "price_filter_high": "높은 가격",
+    "skip_to_content": "Skip to content"
   },
   "actions": {
     "add_to_cart": "카트에 추가",
@@ -115,7 +116,9 @@
     "show_all_options": "모든 옵션 보기",
     "open": "열기",
     "back_to": "{{ title }}(으)로 돌아가기",
-    "zoom_media": "{{ index }} 미디어 확대/축소"
+    "zoom_media": "{{ index }} 미디어 확대/축소",
+    "checkout": "Checkout",
+    "view_cart": "View cart"
   },
   "content": {
     "reviews": "리뷰",
@@ -272,7 +275,10 @@
       "other": "카트에 {{ count }}개 품목이 추가됨"
     },
     "item_count_cutoff": "{{ count }}개 이상의 품목",
-    "quick_order_list": "빠른 주문 목록"
+    "quick_order_list": "빠른 주문 목록",
+    "cart_empty": "Your cart is empty",
+    "cart_empty_message": "Add a product to get started.",
+    "product_badge_new": "New"
   },
   "gift_cards": {
     "issued": {
@@ -338,6 +344,11 @@
       "post": "댓글 달기",
       "success_moderated": "댓글이 게시되었습니다. 조정 대기 중입니다",
       "success": "댓글 게시됨"
+    }
+  },
+  "general": {
+    "newsletter": {
+      "success": "Thanks for subscribing!"
     }
   }
 }

@@ -74,7 +74,8 @@
     "featured_product": "Featured product",
     "search_suggestions_available": "Search suggestions available for \"{{ query }}\"",
     "price_filter_low": "Low price",
-    "price_filter_high": "High price"
+    "price_filter_high": "High price",
+    "skip_to_content": "Skip to content"
   },
   "actions": {
     "add_to_cart": "Add to cart",
@@ -117,7 +118,9 @@
     "show_all_options": "Show all options",
     "open": "Open",
     "back_to": "Back to {{ title }}",
-    "zoom_media": "Zoom media {{ index }}"
+    "zoom_media": "Zoom media {{ index }}",
+    "checkout": "Checkout",
+    "view_cart": "View cart"
   },
   "content": {
     "reviews": "reviews",
@@ -283,7 +286,10 @@
       "one": "{{ count }} product found",
       "other": "{{ count }} products found",
       "many": "{{ count }} products found"
-    }
+    },
+    "cart_empty": "Your cart is empty",
+    "cart_empty_message": "Add a product to get started.",
+    "product_badge_new": "New"
   },
   "gift_cards": {
     "issued": {
@@ -350,6 +356,11 @@
       "post": "Post comment",
       "success_moderated": "Comment posted, pending moderation",
       "success": "Comment posted"
+    }
+  },
+  "general": {
+    "newsletter": {
+      "success": "Thanks for subscribing!"
     }
   }
 }

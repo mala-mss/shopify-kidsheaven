@@ -74,7 +74,8 @@
     "featured_product": "Produit en vedette",
     "search_suggestions_available": "Rechercher des suggestions disponibles pour « {{ query }} »",
     "price_filter_low": "Prix bas",
-    "price_filter_high": "Prix élevé"
+    "price_filter_high": "Prix élevé",
+    "skip_to_content": "Passer au contenu"
   },
   "actions": {
     "add_to_cart": "Ajouter au panier",
@@ -117,7 +118,9 @@
     "show_all_options": "Afficher toutes les options",
     "open": "Ouvrir",
     "back_to": "Retour à {{ title }}",
-    "zoom_media": "Zoom du support multimédia {{ index }}"
+    "zoom_media": "Zoom du support multimédia {{ index }}",
+    "checkout": "Passer à la caisse",
+    "view_cart": "Voir le panier"
   },
   "content": {
     "reviews": "avis",
@@ -278,7 +281,10 @@
       "other": "{{ count }} articles ajoutés au panier",
       "many": "{{ count }} articles ajoutés au panier"
     },
-    "quick_order_list": "Liste de commande rapide"
+    "quick_order_list": "Liste de commande rapide",
+    "cart_empty": "Votre panier est vide",
+    "cart_empty_message": "Ajoutez un produit pour commencer.",
+    "product_badge_new": "Nouveau"
   },
   "gift_cards": {
     "issued": {
@@ -345,6 +351,11 @@
       "post": "Publier le commentaire",
       "success_moderated": "Commentaire publié, en attente de modération",
       "success": "Commentaire publié"
+    }
+  },
+  "general": {
+    "newsletter": {
+      "success": "Merci de vous être abonné(e) !"
     }
   }
 }

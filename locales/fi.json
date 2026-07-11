@@ -73,7 +73,8 @@
     "featured_product": "Esittelyssä oleva tuote",
     "search_suggestions_available": "Hakuehdotuksia saatavilla haulle {{ query }}",
     "price_filter_low": "Halpa hinta",
-    "price_filter_high": "Kallis hinta"
+    "price_filter_high": "Kallis hinta",
+    "skip_to_content": "Skip to content"
   },
   "actions": {
     "add_to_cart": "Lisää ostoskoriin",
@@ -115,7 +116,9 @@
     "show_all_options": "Näytä kaikki vaihtoehdot",
     "open": "Avaa",
     "back_to": "Takaisin kohteeseen {{ title }}",
-    "zoom_media": "Lähennä mediasisältö: {{ index }}"
+    "zoom_media": "Lähennä mediasisältö: {{ index }}",
+    "checkout": "Checkout",
+    "view_cart": "View cart"
   },
   "content": {
     "reviews": "arvostelua",
@@ -272,7 +275,10 @@
       "one": "Yksi tuote lisätty ostoskoriin",
       "other": "{{ count }} tuotetta lisätty ostoskoriin"
     },
-    "quick_order_list": "Pikatilausluettelo"
+    "quick_order_list": "Pikatilausluettelo",
+    "cart_empty": "Your cart is empty",
+    "cart_empty_message": "Add a product to get started.",
+    "product_badge_new": "New"
   },
   "gift_cards": {
     "issued": {
@@ -338,6 +344,11 @@
       "post": "Julkaise kommentti",
       "success_moderated": "Kommentti on julkaistu; odotetaan moderointia",
       "success": "Kommentti on julkaistu"
+    }
+  },
+  "general": {
+    "newsletter": {
+      "success": "Thanks for subscribing!"
     }
   }
 }

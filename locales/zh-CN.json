@@ -73,7 +73,8 @@
     "featured_product": "特色产品",
     "search_suggestions_available": "针对“{{ query }}”的搜索建议",
     "price_filter_low": "低价",
-    "price_filter_high": "高价"
+    "price_filter_high": "高价",
+    "skip_to_content": "Skip to content"
   },
   "actions": {
     "add_to_cart": "添加到购物车",
@@ -115,7 +116,9 @@
     "show_all_options": "显示所有选项",
     "open": "打开",
     "back_to": "返回 {{ title }}",
-    "zoom_media": "缩放媒体文件 {{ index }}"
+    "zoom_media": "缩放媒体文件 {{ index }}",
+    "checkout": "Checkout",
+    "view_cart": "View cart"
   },
   "content": {
     "reviews": "评价",
@@ -272,7 +275,10 @@
       "one": "1 件商品已加入购物车",
       "other": "{{ count }} 件商品已加入购物车"
     },
-    "quick_order_list": "快速订购列表"
+    "quick_order_list": "快速订购列表",
+    "cart_empty": "Your cart is empty",
+    "cart_empty_message": "Add a product to get started.",
+    "product_badge_new": "New"
   },
   "gift_cards": {
     "issued": {
@@ -338,6 +344,11 @@
       "post": "发布评论",
       "success_moderated": "评论已发布，等待审核",
       "success": "评论已发布"
+    }
+  },
+  "general": {
+    "newsletter": {
+      "success": "Thanks for subscribing!"
     }
   }
 }

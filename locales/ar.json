@@ -6,7 +6,7 @@
     "newsletter": {
       "email": "البريد الإلكتروني",
       "subscribe": "اشتراك",
-      "success": "شكراً، تم تسجيلك."
+      "success": "شكرًا للاشتراك!"
     },
     "language": {
       "label": "اللغة"
@@ -86,7 +86,7 @@
     "new": "جديد"
   },
   "accessibility": {
-    "skip_to_content": "الانتقال إلى المحتوى"
+    "skip_to_content": "الذهاب إلى المحتوى"
   },
   "products": {
     "badges": {
@@ -103,5 +103,14 @@
   },
   "collection": {
     "view_all": "عرض المجموعة"
+  },
+  "actions": {
+    "checkout": "الدفع",
+    "view_cart": "عرض السلة"
+  },
+  "content": {
+    "cart_empty": "سلة التسوق فارغة",
+    "cart_empty_message": "أضف منتجًا للبدء.",
+    "product_badge_new": "جديد"
   }
 }

@@ -73,7 +73,8 @@
     "featured_product": "Fremhevet produkt",
     "search_suggestions_available": "Søkeforslag tilgjengelige for «{{ query }}»",
     "price_filter_low": "Lav pris",
-    "price_filter_high": "Høy pris"
+    "price_filter_high": "Høy pris",
+    "skip_to_content": "Skip to content"
   },
   "actions": {
     "add_to_cart": "Legg i handlekurv",
@@ -115,7 +116,9 @@
     "show_all_options": "Vis alle alternativer",
     "open": "Åpen",
     "back_to": "Tilbake til {{ title }}",
-    "zoom_media": "Zoom medier {{ index }}"
+    "zoom_media": "Zoom medier {{ index }}",
+    "checkout": "Checkout",
+    "view_cart": "View cart"
   },
   "content": {
     "reviews": "anmeldelser",
@@ -272,7 +275,10 @@
       "other": "{{ count }} varer er lagt til i handlekurven"
     },
     "item_count_cutoff": "Mer enn {{ count }} varer",
-    "quick_order_list": "Hurtigbestillingsliste"
+    "quick_order_list": "Hurtigbestillingsliste",
+    "cart_empty": "Your cart is empty",
+    "cart_empty_message": "Add a product to get started.",
+    "product_badge_new": "New"
   },
   "gift_cards": {
     "issued": {
@@ -338,6 +344,11 @@
       "in_cart": "i handlekurv",
       "default_title": "Standardtittel",
       "sticky_add_to_cart": "Hurtiglinje for «Legg i handlekurv»"
+    }
+  },
+  "general": {
+    "newsletter": {
+      "success": "Thanks for subscribing!"
     }
   }
 }
