@@ -378,16 +378,30 @@
           if (isOpen(root)) closeAll(); else { closeAll(); openOne(root); }
           return;
         }
-        // If the click landed on a language <button> inside the menu, let the
-        // <form> submit, but show "Switching…" feedback and close the menu
-        // immediately so the UI doesn't appear to hang.
+        // If the click landed on a language <button> inside the menu, submit
+        // its parent <form> explicitly so we don't depend on the click bubbling
+        // to a submit button (Safari/Edge edge cases). Show "Switching…"
+        // feedback and close the menu immediately so the UI doesn't appear
+        // to hang. If the navigation doesn't happen within 4s, restore the
+        // label and re-enable the button so the user can retry.
         var langBtn = e.target && e.target.closest && e.target.closest(ROOT + ' [data-locale]');
         if (langBtn) {
+          e.preventDefault();
           closeAll();
+          var form = langBtn.closest('form');
           langBtn.dataset.origText = langBtn.textContent;
           langBtn.textContent = '…';
           langBtn.disabled = true;
-          return; // allow native form submit
+          if (form) {
+            setTimeout(function () {
+              if (langBtn.textContent === '…') {
+                langBtn.textContent = langBtn.dataset.origText || '';
+                langBtn.disabled = false;
+              }
+            }, 4000);
+            form.submit();
+          }
+          return;
         }
         // Clicking anywhere else inside a locale menu: do nothing.
         if (e.target.closest && e.target.closest(ROOT)) return;
