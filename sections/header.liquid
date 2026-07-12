@@ -60,9 +60,13 @@
           </button>
           <div class="kh-locale-menu" role="menu" data-kh-locale-menu hidden>
             {%- if shop.published_locales.size > 1 -%}
+              {%- assign return_to = request.path -%}
+              {%- if return_to == blank or return_to == '/' -%}
+                {%- assign return_to = routes.root_url -%}
+              {%- endif -%}
               {%- for locale in shop.published_locales -%}
                 <form action="/localization" method="post" data-kh-locale-form>
-                  <input type="hidden" name="return_to" value="{{ request.path }}">
+                  <input type="hidden" name="return_to" value="{{ return_to }}">
                   <input type="hidden" name="locale" value="{{ locale.iso_code }}">
                   <button
                     type="submit"
@@ -374,8 +378,18 @@
           if (isOpen(root)) closeAll(); else { closeAll(); openOne(root); }
           return;
         }
-        // Clicking anywhere inside a locale menu but not on its toggle: let
-        // the inner <form>/<button> submit naturally — do NOT intercept.
+        // If the click landed on a language <button> inside the menu, let the
+        // <form> submit, but show "Switching…" feedback and close the menu
+        // immediately so the UI doesn't appear to hang.
+        var langBtn = e.target && e.target.closest && e.target.closest(ROOT + ' [data-locale]');
+        if (langBtn) {
+          closeAll();
+          langBtn.dataset.origText = langBtn.textContent;
+          langBtn.textContent = '…';
+          langBtn.disabled = true;
+          return; // allow native form submit
+        }
+        // Clicking anywhere else inside a locale menu: do nothing.
         if (e.target.closest && e.target.closest(ROOT)) return;
         // Click anywhere else → close.
         closeAll();
