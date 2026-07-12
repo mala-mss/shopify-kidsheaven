@@ -299,8 +299,39 @@ main#MainContent{
 .kh-icon-btn:hover{ background: var(--kh-sand-soft); color: var(--kh-coral-deep); transform: scale(1.05); }
 .kh-icon-btn svg{ width: 22px; height: 22px; }
 .kh-icon-btn--menu{ display: inline-flex; }
-.kh-icon-btn--lang{ width: auto; min-width: 44px; padding: 0 10px; border-radius: 999px; font-weight: 600; font-size: 12px; letter-spacing: .04em; }
+.kh-icon-btn--lang{ width: auto; min-width: 44px; padding: 0 10px; border-radius: 999px; font-weight: 600; font-size: 12px; letter-spacing: .04em; gap: 4px; }
 .kh-locale-label{ display: inline-block; line-height: 1; }
+.kh-locale-caret{ width: 14px; height: 14px; opacity: .7; }
+.kh-locale{ position: relative; display: inline-flex; }
+.kh-locale-menu{
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 160px;
+  background: var(--kh-cream, #fbf7f1);
+  border: 1px solid rgba(29,42,58,.08);
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(29,42,58,.12);
+  padding: 6px;
+  z-index: 50;
+}
+.kh-locale-menu[hidden]{ display: none; }
+.kh-locale-menu form{ display: flex; flex-direction: column; gap: 2px; }
+.kh-locale-menu button{
+  appearance: none;
+  background: transparent;
+  border: 0;
+  text-align: start;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--kh-ink, #1d2a3a);
+  cursor: pointer;
+}
+.kh-locale-menu button:hover{ background: var(--kh-sand-soft, #f1e9dd); color: var(--kh-coral-deep, #d44a3d); }
+.kh-locale-menu button[aria-current="true"]{ background: var(--kh-sand-soft, #f1e9dd); font-weight: 600; }
+[dir="rtl"] .kh-locale-menu{ right: auto; left: 0; }
 @media (min-width: 900px){
   .kh-icon-btn--menu{ display: none; }
 }

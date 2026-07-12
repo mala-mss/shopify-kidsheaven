@@ -43,15 +43,28 @@
             <circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6" stroke-linecap="round"/>
           </svg>
         </a>
-        <button
-          class="kh-icon-btn kh-icon-btn--lang"
-          type="button"
-          aria-label="Change language"
-          title="Change language"
-          data-kh-locale-toggle
-        >
-          <span class="kh-locale-label" data-kh-locale-label>EN</span>
-        </button>
+        <div class="kh-locale" data-kh-locale>
+          <button
+            class="kh-icon-btn kh-icon-btn--lang"
+            type="button"
+            aria-label="Change language"
+            aria-haspopup="menu"
+            aria-expanded="false"
+            title="Change language"
+            data-kh-locale-toggle
+          >
+            <span class="kh-locale-label" data-kh-locale-label>EN</span>
+            <svg class="kh-locale-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kh-locale-menu" role="menu" data-kh-locale-menu hidden>
+            <form action="/localization" method="post" data-kh-locale-form>
+              <input type="hidden" name="return_to" value="{{ request.path }}">
+              <button type="submit" name="locale_code" value="en" role="menuitem" data-locale="en">English</button>
+              <button type="submit" name="locale_code" value="fr" role="menuitem" data-locale="fr">Français</button>
+              <button type="submit" name="locale_code" value="ar" role="menuitem" data-locale="ar">العربية</button>
+            </form>
+          </div>
+        </div>
         <cart-icon class="header-actions__cart-icon{% if cart.item_count > 0 %} header-actions__cart-icon--has-cart{% endif %}">
           <button class="kh-icon-btn kh-icon-btn--cart" type="button" aria-label="Cart" id="kh-cart-trigger" aria-haspopup="dialog" aria-controls="kh-cart-drawer" data-testid="cart-drawer-trigger" ref="cartBubble">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -295,63 +308,83 @@
       if (t && !t.__khBound) { t.__khBound = true; t.addEventListener('click', openCart); }
     });
 
-    // Locale switcher (EN / FR / AR)
+    // Locale switcher (EN / FR / AR) — uses Shopify's native /localization
+    // endpoint, so it works as long as the locale is published in
+    // Settings → Markets → Languages. If FR/AR aren't enabled, that
+    // selection just won't take effect — no JS errors.
     (function () {
-      var SUPPORTED = [
-        { code: 'en', label: 'EN' },
-        { code: 'fr', label: 'FR' },
-        { code: 'ar', label: 'AR' }
-      ];
-      var COOKIE = 'kh_locale';
-      var COOKIE_DAYS = 365;
+      var ROOT = '[data-kh-locale]';
+      var SUPPORTED = ['en', 'fr', 'ar'];
+      var LABELS = { en: 'EN', fr: 'FR', ar: 'AR' };
 
-      function getCookie(name) {
-        var match = document.cookie.match(new RegExp('(^|;\\s*)' + name + '=([^;]*)'));
-        return match ? decodeURIComponent(match[2]) : null;
-      }
-      function setCookie(name, value, days) {
-        var d = new Date();
-        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-        document.cookie = name + '=' + encodeURIComponent(value) + ';path=/;expires=' + d.toUTCString() + ';SameSite=Lax';
+      function currentCode() {
+        var htmlLang = (document.documentElement && document.documentElement.lang) || 'en';
+        var short = htmlLang.toLowerCase().slice(0, 2);
+        return SUPPORTED.indexOf(short) >= 0 ? short : 'en';
       }
 
-      // Detect active locale: prefer cookie, then Shopify's current request locale, then URL param.
-      var pathLocale = (window.location.pathname.match(/^\/(en|fr|ar)\b/) || [])[1] || null;
-      var currentCode = (
-        getCookie(COOKIE) ||
-        pathLocale ||
-        (document.documentElement && document.documentElement.lang) ||
-        'en'
-      ).toLowerCase().slice(0, 2);
-
-      function nextLocale(code) {
-        var i = SUPPORTED.findIndex(function (s) { return s.code === code; });
-        return SUPPORTED[(i < 0 ? 0 : i + 1) % SUPPORTED.length];
-      }
-
-      function applyLocale(code, reload) {
-        var url = new URL(window.location.href);
-        url.searchParams.set('locale', code);
-        if (reload) {
-          setCookie(COOKIE, code, COOKIE_DAYS);
-          window.location.href = url.toString();
-        }
-        return url.toString();
-      }
-
-      var labelEl = document.querySelector('[data-kh-locale-label]');
-      if (labelEl) {
-        var current = SUPPORTED.find(function (s) { return s.code === currentCode; }) || SUPPORTED[0];
-        labelEl.textContent = current.label;
-      }
-
-      document.querySelectorAll('[data-kh-locale-toggle]').forEach(function (btn) {
-        btn.addEventListener('click', function (e) {
-          e.preventDefault();
-          var nxt = nextLocale(currentCode);
-          applyLocale(nxt.code, true);
+      function closeAll() {
+        document.querySelectorAll(ROOT).forEach(function (root) {
+          var menu = root.querySelector('[data-kh-locale-menu]');
+          var btn = root.querySelector('[data-kh-locale-toggle]');
+          if (menu) menu.setAttribute('hidden', '');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
         });
+      }
+
+      function toggle(root) {
+        var menu = root.querySelector('[data-kh-locale-menu]');
+        var btn = root.querySelector('[data-kh-locale-toggle]');
+        if (!menu || !btn) return;
+        var open = !menu.hasAttribute('hidden');
+        closeAll();
+        if (!open) {
+          menu.removeAttribute('hidden');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      }
+
+      // Delegated click handler — survives Shopify section re-renders.
+      document.addEventListener('click', function (e) {
+        var toggleBtn = e.target && e.target.closest && e.target.closest('[data-kh-locale-toggle]');
+        if (toggleBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          var root = toggleBtn.closest(ROOT);
+          if (root) toggle(root);
+          return;
+        }
+        // Click on a menu item — let the <form> submit naturally.
+        var item = e.target && e.target.closest && e.target.closest(ROOT + ' [data-locale]');
+        if (item) return;
+        // Click anywhere else → close.
+        closeAll();
       });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAll();
+      });
+
+      function init() {
+        var current = currentCode();
+        var labelEl = document.querySelector('[data-kh-locale-label]');
+        if (labelEl) labelEl.textContent = LABELS[current] || 'EN';
+        document.querySelectorAll(ROOT + ' [data-locale]').forEach(function (btn) {
+          if (btn.getAttribute('data-locale') === current) {
+            btn.setAttribute('aria-current', 'true');
+          } else {
+            btn.removeAttribute('aria-current');
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+      document.addEventListener('shopify:section:load', init);
     })();
   })();
 </script>
