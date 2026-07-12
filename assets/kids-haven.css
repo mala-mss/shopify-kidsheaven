@@ -299,6 +299,8 @@ main#MainContent{
 .kh-icon-btn:hover{ background: var(--kh-sand-soft); color: var(--kh-coral-deep); transform: scale(1.05); }
 .kh-icon-btn svg{ width: 22px; height: 22px; }
 .kh-icon-btn--menu{ display: inline-flex; }
+.kh-icon-btn--lang{ width: auto; min-width: 44px; padding: 0 10px; border-radius: 999px; font-weight: 600; font-size: 12px; letter-spacing: .04em; }
+.kh-locale-label{ display: inline-block; line-height: 1; }
 @media (min-width: 900px){
   .kh-icon-btn--menu{ display: none; }
 }

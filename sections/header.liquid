@@ -43,6 +43,15 @@
             <circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6" stroke-linecap="round"/>
           </svg>
         </a>
+        <button
+          class="kh-icon-btn kh-icon-btn--lang"
+          type="button"
+          aria-label="Change language"
+          title="Change language"
+          data-kh-locale-toggle
+        >
+          <span class="kh-locale-label" data-kh-locale-label>EN</span>
+        </button>
         <cart-icon class="header-actions__cart-icon{% if cart.item_count > 0 %} header-actions__cart-icon--has-cart{% endif %}">
           <button class="kh-icon-btn kh-icon-btn--cart" type="button" aria-label="Cart" id="kh-cart-trigger" aria-haspopup="dialog" aria-controls="kh-cart-drawer" data-testid="cart-drawer-trigger" ref="cartBubble">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -285,6 +294,65 @@
       var t = document.getElementById('kh-cart-trigger');
       if (t && !t.__khBound) { t.__khBound = true; t.addEventListener('click', openCart); }
     });
+
+    // Locale switcher (EN / FR / AR)
+    (function () {
+      var SUPPORTED = [
+        { code: 'en', label: 'EN' },
+        { code: 'fr', label: 'FR' },
+        { code: 'ar', label: 'AR' }
+      ];
+      var COOKIE = 'kh_locale';
+      var COOKIE_DAYS = 365;
+
+      function getCookie(name) {
+        var match = document.cookie.match(new RegExp('(^|;\\s*)' + name + '=([^;]*)'));
+        return match ? decodeURIComponent(match[2]) : null;
+      }
+      function setCookie(name, value, days) {
+        var d = new Date();
+        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = name + '=' + encodeURIComponent(value) + ';path=/;expires=' + d.toUTCString() + ';SameSite=Lax';
+      }
+
+      // Detect active locale: prefer cookie, then Shopify's current request locale, then URL param.
+      var pathLocale = (window.location.pathname.match(/^\/(en|fr|ar)\b/) || [])[1] || null;
+      var currentCode = (
+        getCookie(COOKIE) ||
+        pathLocale ||
+        (document.documentElement && document.documentElement.lang) ||
+        'en'
+      ).toLowerCase().slice(0, 2);
+
+      function nextLocale(code) {
+        var i = SUPPORTED.findIndex(function (s) { return s.code === code; });
+        return SUPPORTED[(i < 0 ? 0 : i + 1) % SUPPORTED.length];
+      }
+
+      function applyLocale(code, reload) {
+        var url = new URL(window.location.href);
+        url.searchParams.set('locale', code);
+        if (reload) {
+          setCookie(COOKIE, code, COOKIE_DAYS);
+          window.location.href = url.toString();
+        }
+        return url.toString();
+      }
+
+      var labelEl = document.querySelector('[data-kh-locale-label]');
+      if (labelEl) {
+        var current = SUPPORTED.find(function (s) { return s.code === currentCode; }) || SUPPORTED[0];
+        labelEl.textContent = current.label;
+      }
+
+      document.querySelectorAll('[data-kh-locale-toggle]').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          var nxt = nextLocale(currentCode);
+          applyLocale(nxt.code, true);
+        });
+      });
+    })();
   })();
 </script>
 
