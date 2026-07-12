@@ -115,6 +115,8 @@
               role="option"
               aria-selected="{% if option.value == sort_by %}true{% else %}false{% endif %}"
               tabindex="{% if option.value == sort_by %}0{% else %}-1{% endif %}"
+              on:click="/selectFromRow"
+              on:keydown="/handleKeyDown"
             >
               <input
                 type="radio"

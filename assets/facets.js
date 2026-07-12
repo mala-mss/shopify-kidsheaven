@@ -595,6 +595,23 @@ class SortingFilterComponent extends Component {
   }
 
   /**
+   * Handles a click on a sort row. Clicks anywhere on the row (label text,
+   * checkmark, etc.) should select that sort option, since the row is no
+   * longer a native <label> wrapping the radio.
+   * @param {MouseEvent} event - The click event
+   */
+  selectFromRow(event) {
+    // `event.target` is proxied by the Component dispatcher to the element
+    // that declared the `on:click` attribute (the row).
+    const row = event.target;
+    if (!(row instanceof HTMLElement)) return;
+    const input = row.querySelector('input[type="radio"]');
+    if (!(input instanceof HTMLInputElement)) return;
+
+    input.click();
+  }
+
+  /**
    * Closes the dropdown and returns focus to summary
    */
   #closeDropdown() {
@@ -645,8 +662,9 @@ class SortingFilterComponent extends Component {
         });
       } else {
         const selectElement = this.querySelector('select[name="sort_by"]');
-        if (!(selectElement instanceof HTMLSelectElement)) return;
-        selectElement.disabled = true;
+        if (selectElement instanceof HTMLSelectElement) {
+          selectElement.disabled = true;
+        }
       }
     }
 
@@ -663,8 +681,9 @@ class SortingFilterComponent extends Component {
         });
       } else {
         const selectElement = this.querySelector('select[name="sort_by"]');
-        if (!(selectElement instanceof HTMLSelectElement)) return;
-        selectElement.disabled = false;
+        if (selectElement instanceof HTMLSelectElement) {
+          selectElement.disabled = false;
+        }
       }
     }
 
