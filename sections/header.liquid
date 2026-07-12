@@ -60,10 +60,12 @@
           </button>
           <div class="kh-locale-menu" role="menu" data-kh-locale-menu hidden>
             {%- if shop.published_locales.size > 1 -%}
-              {%- assign return_to = request.path -%}
-              {%- if return_to == blank or return_to == '/' -%}
-                {%- assign return_to = routes.root_url -%}
-              {%- endif -%}
+              {%- comment -%}
+                Always send the user to the homepage after switching language.
+                Using request.path here causes 404s on any URL that has no
+                translated equivalent in the target locale.
+              {%- endcomment -%}
+              {%- assign return_to = routes.root_url -%}
               {%- for locale in shop.published_locales -%}
                 <form action="/localization" method="post" data-kh-locale-form>
                   <input type="hidden" name="return_to" value="{{ return_to }}">
