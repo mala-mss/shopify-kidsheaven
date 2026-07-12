@@ -108,36 +108,34 @@
       >
         <div class="sorting-filter__options-inner">
           {% for option in results.sort_options %}
-            <label
-              for="sort-option-{{ option.value }}-{{ section_id }}"
+            <div
+              class="sorting-filter__row"
+              data-sort-trigger
+              data-sort-value="{{ option.value }}"
+              role="option"
+              aria-selected="{% if option.value == sort_by %}true{% else %}false{% endif %}"
+              tabindex="{% if option.value == sort_by %}0{% else %}-1{% endif %}"
             >
-              <div
-                class="sorting-filter__option"
-                role="option"
-                aria-selected="{% if option.value == sort_by %}true{% else %}false{% endif %}"
-                tabindex="{% if option.value == sort_by %}0{% else %}-1{% endif %}"
+              <input
+                type="radio"
+                name="sort_by"
+                id="sort-option-{{ option.value }}-{{ section_id }}"
+                {% if suffix != blank %}
+                  form="FacetFiltersForm--{{ section_id }}-{% if suffix == 'mobile' %}mobile-sorting-only{% else %}{{ suffix }}{% endif %}"
+                {% endif %}
+                value="{{ option.value }}"
+                class="sorting-filter__input"
+                data-option-name="{{ option.name }}"
+                {% if option.value == sort_by %}
+                  checked
+                {% endif %}
+                on:change="/updateFilterAndSorting"
               >
-                <input
-                  type="radio"
-                  name="sort_by"
-                  id="sort-option-{{ option.value }}-{{ section_id }}"
-                  {% if suffix != blank %}
-                    form="FacetFiltersForm--{{ section_id }}-{{ suffix }}"
-                  {% endif %}
-                  value="{{ option.value }}"
-                  class="sorting-filter__input"
-                  data-option-name="{{ option.name }}"
-                  {% if option.value == sort_by %}
-                    checked
-                  {% endif %}
-                  aria-hidden="true"
-                >
-                <span class="svg-wrapper icon-checkmark sorting-filter__checkmark">
-                  {{- 'icon-checkmark.svg' | inline_asset_content -}}
-                </span>
-                <span class="sorting-filter__label">{{ option.name }}</span>
-              </div>
-            </label>
+              <span class="svg-wrapper icon-checkmark sorting-filter__checkmark" aria-hidden="true">
+                {{- 'icon-checkmark.svg' | inline_asset_content -}}
+              </span>
+              <span class="sorting-filter__label">{{ option.name }}</span>
+            </div>
           {% endfor %}
         </div>
       </floating-panel-component>
@@ -343,18 +341,7 @@
     }
   }
 
-  .sorting-filter__options-inner > label {
-    display: block;
-    border-radius: var(--kh-radius-sm, 10px);
-    cursor: pointer;
-    transition: background-color .15s ease;
-  }
-
-  .sorting-filter__options-inner > label:hover {
-    background: var(--kh-sand-soft, #fbf3e2);
-  }
-
-  .sorting-filter__option {
+  .sorting-filter__row {
     cursor: pointer;
     display: grid;
     grid-template-columns: 20px 1fr;
@@ -369,17 +356,21 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 1.3;
+    border-radius: var(--kh-radius-sm, 10px);
+    user-select: none;
+    transition: background-color .15s ease, color .15s ease;
   }
 
-  .sorting-filter__options-inner > label:hover .sorting-filter__option {
+  .sorting-filter__row:hover {
+    background: var(--kh-sand-soft, #fbf3e2);
     color: var(--kh-coral-deep);
   }
 
-  .sorting-filter__option:focus-within {
+  .sorting-filter__row:focus-within {
     outline: none;
   }
 
-  .sorting-filter__options-inner > label:has(.sorting-filter__input:focus-visible) {
+  .sorting-filter__row:focus-visible {
     background: var(--kh-sand-soft, #fbf3e2);
     outline: 2px solid var(--kh-coral);
     outline-offset: -2px;
@@ -407,6 +398,7 @@
     border-radius: 50%;
     background: var(--kh-coral);
     color: var(--kh-white);
+    flex-shrink: 0;
   }
 
   .sorting-filter__checkmark svg {

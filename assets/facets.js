@@ -679,16 +679,19 @@ class SortingFilterComponent extends Component {
    * @param {Event} event - The change event
    */
   updateFacetStatus(event) {
-    if (!(event.target instanceof HTMLSelectElement)) return;
+    const target = event.target;
+    if (!(target instanceof HTMLInputElement) && !(target instanceof HTMLSelectElement)) return;
 
     const details = this.querySelector('details');
-    if (!details) return;
+    if (!(details instanceof HTMLElement)) return;
 
     const facetStatus = details.querySelector('facet-status-component');
-    if (!(facetStatus instanceof FacetStatusComponent)) return;
+    if (!(facetStatus instanceof HTMLElement)) return;
 
-    facetStatus.textContent =
-      event.target.value !== details.dataset.defaultSortBy ? event.target.dataset.optionName ?? '' : '';
+    const value = target.value;
+    const name = target.dataset.optionName ?? '';
+
+    facetStatus.textContent = value !== details.dataset.defaultSortBy ? name : '';
   }
 }
 
