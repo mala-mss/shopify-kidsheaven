@@ -63,6 +63,10 @@
               <button type="submit" name="locale_code" value="fr" role="menuitem" data-locale="fr">Français</button>
               <button type="submit" name="locale_code" value="ar" role="menuitem" data-locale="ar">العربية</button>
             </form>
+            <p class="kh-locale-hint" data-kh-locale-hint hidden>
+              To switch languages, enable <strong>French</strong> and <strong>Arabic</strong> in
+              <em>Shopify Admin → Settings → Markets and languages</em>.
+            </p>
           </div>
         </div>
         <cart-icon class="header-actions__cart-icon{% if cart.item_count > 0 %} header-actions__cart-icon--has-cart{% endif %}">
@@ -343,6 +347,60 @@
           btn.setAttribute('aria-expanded', 'true');
         }
       }
+
+      // Intercept menu-item clicks so we can detect a 404 (locale not enabled
+      // in Shopify admin) and show an inline hint instead of navigating away.
+      document.addEventListener('click', function (e) {
+        var item = e.target && e.target.closest && e.target.closest(ROOT + ' [data-locale]');
+        if (!item) return;
+        e.preventDefault();
+        e.stopPropagation();
+
+        var form = item.closest('form');
+        if (!form) return;
+        var code = item.getAttribute('data-locale');
+
+        var body = new URLSearchParams();
+        body.set('locale_code', code);
+        var returnTo = (form.querySelector('input[name="return_to"]') || {}).value || '/';
+        body.set('return_to', returnTo);
+
+        var btn = item;
+        var origText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = '…';
+
+        fetch('/localization', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'text/html' },
+          body: body.toString(),
+          redirect: 'manual',
+          credentials: 'same-origin'
+        }).then(function (res) {
+          // Shopify /localization responds 200 (or 302) for a working locale.
+          // 404 (or opaqueredirect on fetch when locale missing) means it's not enabled.
+          if (res.type === 'opaqueredirect' || (res.status >= 200 && res.status < 400)) {
+            window.location.href = '/' + code + (returnTo === '/' ? '/' : returnTo);
+            return;
+          }
+          if (res.status === 404 || res.status === 403) {
+            showHint();
+            return;
+          }
+          // Unknown — fall back to native form submit.
+          form.submit();
+        }).catch(function () {
+          showHint();
+        }).finally(function () {
+          btn.disabled = false;
+          btn.textContent = origText;
+        });
+
+        function showHint() {
+          var hint = document.querySelector('[data-kh-locale-hint]');
+          if (hint) hint.removeAttribute('hidden');
+        }
+      });
 
       // Delegated click handler — survives Shopify section re-renders.
       document.addEventListener('click', function (e) {

@@ -331,6 +331,16 @@ main#MainContent{
 }
 .kh-locale-menu button:hover{ background: var(--kh-sand-soft, #f1e9dd); color: var(--kh-coral-deep, #d44a3d); }
 .kh-locale-menu button[aria-current="true"]{ background: var(--kh-sand-soft, #f1e9dd); font-weight: 600; }
+.kh-locale-hint{
+  margin: 6px 8px 4px;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--kh-coral-deep, #d44a3d);
+  background: rgba(212, 74, 61, 0.08);
+  border-radius: 8px;
+}
+.kh-locale-hint[hidden]{ display: none; }
 [dir="rtl"] .kh-locale-menu{ right: auto; left: 0; }
 @media (min-width: 900px){
   .kh-icon-btn--menu{ display: none; }
