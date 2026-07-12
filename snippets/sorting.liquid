@@ -213,9 +213,12 @@
   }
 
   .sorting-filter {
-    @media screen and (min-width: 750px) {
-      z-index: var(--facets-upper-z-index);
-    }
+    position: relative;
+    z-index: var(--facets-upper-z-index, 3);
+  }
+
+  .sorting-filter .facets__panel {
+    position: relative;
   }
 
   .sorting-filter__options {
@@ -226,7 +229,7 @@
     top: 100%;
     right: 0;
     color: var(--color-foreground);
-    z-index: var(--facets-upper-z-index);
+    z-index: var(--facets-upper-z-index, 3);
     box-shadow: var(--shadow-popover);
     border: var(--style-border-popover);
     background-color: var(--color-background);
@@ -234,6 +237,7 @@
     width: max-content;
     min-width: var(--facets-panel-min-width);
     min-height: 0;
+    margin-block-start: 4px;
 
     transition: grid-template-rows var(--animation-speed-slow) var(--animation-easing),
       opacity var(--animation-speed-slow) var(--animation-easing);
