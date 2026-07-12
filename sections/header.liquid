@@ -53,20 +53,33 @@
             title="Change language"
             data-kh-locale-toggle
           >
-            <span class="kh-locale-label" data-kh-locale-label>EN</span>
+            <span class="kh-locale-label" data-kh-locale-label>
+              {{ request.locale.iso_code | upcase | slice: 0, 2 }}
+            </span>
             <svg class="kh-locale-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="kh-locale-menu" role="menu" data-kh-locale-menu hidden>
-            <form action="/localization" method="post" data-kh-locale-form>
-              <input type="hidden" name="return_to" value="{{ request.path }}">
-              <button type="submit" name="locale_code" value="en" role="menuitem" data-locale="en">English</button>
-              <button type="submit" name="locale_code" value="fr" role="menuitem" data-locale="fr">Français</button>
-              <button type="submit" name="locale_code" value="ar" role="menuitem" data-locale="ar">العربية</button>
-            </form>
-            <p class="kh-locale-hint" data-kh-locale-hint hidden>
-              To switch languages, enable <strong>French</strong> and <strong>Arabic</strong> in
-              <em>Shopify Admin → Settings → Markets and languages</em>.
-            </p>
+            {%- if shop.published_locales.size > 1 -%}
+              {%- for locale in shop.published_locales -%}
+                <form action="/localization" method="post" data-kh-locale-form>
+                  <input type="hidden" name="return_to" value="{{ request.path }}">
+                  <input type="hidden" name="locale" value="{{ locale.iso_code }}">
+                  <button
+                    type="submit"
+                    role="menuitem"
+                    data-locale="{{ locale.iso_code }}"
+                    {% if locale.iso_code == request.locale.iso_code %}aria-current="true"{% endif %}
+                  >
+                    {{ locale.endonym_name | default: locale.name }}
+                  </button>
+                </form>
+              {%- endfor -%}
+            {%- else -%}
+              <p class="kh-locale-hint">
+                To switch languages, enable additional languages in
+                <em>Shopify Admin → Settings → Markets and languages</em>.
+              </p>
+            {%- endif -%}
           </div>
         </div>
         <cart-icon class="header-actions__cart-icon{% if cart.item_count > 0 %} header-actions__cart-icon--has-cart{% endif %}">
@@ -312,20 +325,12 @@
       if (t && !t.__khBound) { t.__khBound = true; t.addEventListener('click', openCart); }
     });
 
-    // Locale switcher (EN / FR / AR) — uses Shopify's native /localization
-    // endpoint, so it works as long as the locale is published in
-    // Settings → Markets → Languages. If FR/AR aren't enabled, that
-    // selection just won't take effect — no JS errors.
+    // Locale switcher — uses Shopify's native /localization endpoint.
+    // Requires the language to be published in Settings → Markets → Languages.
+    // Renders one <form> per published locale; submission sets the locale
+    // cookie and the user is redirected to return_to.
     (function () {
       var ROOT = '[data-kh-locale]';
-      var SUPPORTED = ['en', 'fr', 'ar'];
-      var LABELS = { en: 'EN', fr: 'FR', ar: 'AR' };
-
-      function currentCode() {
-        var htmlLang = (document.documentElement && document.documentElement.lang) || 'en';
-        var short = htmlLang.toLowerCase().slice(0, 2);
-        return SUPPORTED.indexOf(short) >= 0 ? short : 'en';
-      }
 
       function closeAll() {
         document.querySelectorAll(ROOT).forEach(function (root) {
@@ -336,85 +341,42 @@
         });
       }
 
-      function toggle(root) {
+      function openOne(root) {
         var menu = root.querySelector('[data-kh-locale-menu]');
         var btn = root.querySelector('[data-kh-locale-toggle]');
         if (!menu || !btn) return;
-        var open = !menu.hasAttribute('hidden');
-        closeAll();
-        if (!open) {
-          menu.removeAttribute('hidden');
-          btn.setAttribute('aria-expanded', 'true');
-        }
+        menu.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded', 'true');
       }
 
-      // Intercept menu-item clicks so we can detect a 404 (locale not enabled
-      // in Shopify admin) and show an inline hint instead of navigating away.
-      document.addEventListener('click', function (e) {
-        var item = e.target && e.target.closest && e.target.closest(ROOT + ' [data-locale]');
-        if (!item) return;
-        e.preventDefault();
-        e.stopPropagation();
+      function isOpen(root) {
+        var menu = root.querySelector('[data-kh-locale-menu]');
+        return !!(menu && !menu.hasAttribute('hidden'));
+      }
 
-        var form = item.closest('form');
-        if (!form) return;
-        var code = item.getAttribute('data-locale');
+      function setActiveLabel() {
+        var code = ((document.documentElement && document.documentElement.lang) || 'en')
+          .toLowerCase()
+          .slice(0, 2)
+          .toUpperCase();
+        var labelEl = document.querySelector('[data-kh-locale-label]');
+        if (labelEl) labelEl.textContent = code;
+      }
 
-        var body = new URLSearchParams();
-        body.set('locale_code', code);
-        var returnTo = (form.querySelector('input[name="return_to"]') || {}).value || '/';
-        body.set('return_to', returnTo);
-
-        var btn = item;
-        var origText = btn.textContent;
-        btn.disabled = true;
-        btn.textContent = '…';
-
-        fetch('/localization', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'text/html' },
-          body: body.toString(),
-          redirect: 'manual',
-          credentials: 'same-origin'
-        }).then(function (res) {
-          // Shopify /localization responds 200 (or 302) for a working locale.
-          // 404 (or opaqueredirect on fetch when locale missing) means it's not enabled.
-          if (res.type === 'opaqueredirect' || (res.status >= 200 && res.status < 400)) {
-            window.location.href = '/' + code + (returnTo === '/' ? '/' : returnTo);
-            return;
-          }
-          if (res.status === 404 || res.status === 403) {
-            showHint();
-            return;
-          }
-          // Unknown — fall back to native form submit.
-          form.submit();
-        }).catch(function () {
-          showHint();
-        }).finally(function () {
-          btn.disabled = false;
-          btn.textContent = origText;
-        });
-
-        function showHint() {
-          var hint = document.querySelector('[data-kh-locale-hint]');
-          if (hint) hint.removeAttribute('hidden');
-        }
-      });
-
-      // Delegated click handler — survives Shopify section re-renders.
+      // Single delegated handler for: toggle button, outside click, escape.
       document.addEventListener('click', function (e) {
         var toggleBtn = e.target && e.target.closest && e.target.closest('[data-kh-locale-toggle]');
         if (toggleBtn) {
           e.preventDefault();
           e.stopPropagation();
           var root = toggleBtn.closest(ROOT);
-          if (root) toggle(root);
+          if (!root) return;
+          if (isOpen(root)) closeAll(); else { closeAll(); openOne(root); }
           return;
         }
-        // Click on a menu item — let the <form> submit naturally.
-        var item = e.target && e.target.closest && e.target.closest(ROOT + ' [data-locale]');
-        if (item) return;
+        // Clicking anywhere inside a locale menu but not on its toggle: let
+        // the inner <form>/<button> submit naturally — do NOT intercept.
+        if (e.target.closest && e.target.closest(ROOT)) return;
         // Click anywhere else → close.
         closeAll();
       });
@@ -424,11 +386,10 @@
       });
 
       function init() {
-        var current = currentCode();
-        var labelEl = document.querySelector('[data-kh-locale-label]');
-        if (labelEl) labelEl.textContent = LABELS[current] || 'EN';
+        setActiveLabel();
         document.querySelectorAll(ROOT + ' [data-locale]').forEach(function (btn) {
-          if (btn.getAttribute('data-locale') === current) {
+          var current = ((document.documentElement && document.documentElement.lang) || '').toLowerCase().slice(0, 2);
+          if ((btn.getAttribute('data-locale') || '').toLowerCase().slice(0, 2) === current) {
             btn.setAttribute('aria-current', 'true');
           } else {
             btn.removeAttribute('aria-current');
