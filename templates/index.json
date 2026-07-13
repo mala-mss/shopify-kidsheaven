@@ -16,21 +16,21 @@
           "type": "chip",
           "settings": {
             "emoji": "☼",
-            "text": "UPF 50+ sun-safe"
+            "text": "UPF 50+ anti-UV"
           }
         },
         "chip_dry": {
           "type": "chip",
           "settings": {
             "emoji": "✦",
-            "text": "Quick-dry fabric"
+            "text": "Séchage rapide"
           }
         },
         "chip_ethical": {
           "type": "chip",
           "settings": {
             "emoji": "♥",
-            "text": "Ethically made"
+            "text": "Fabrication éthique"
           }
         }
       },
