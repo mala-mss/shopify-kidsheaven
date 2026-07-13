@@ -11,7 +11,7 @@
 -%}
 
 <section class="kh-section kh-reveal kh-section--{{ bg }}"
-         aria-label="{{ section.settings.heading | default: 'Featured products' }}">
+         aria-label="{{ section.settings.heading | default: 'kh.products.section_label' | t }}">
   <div class="kh-wrap">
     <header class="kh-section__head">
       {%- if section.settings.eyebrow != blank -%}
@@ -42,11 +42,11 @@
                 <div style="width:100%;height:100%;background:var(--kh-sand)"></div>
               {%- endif -%}
               {%- if product.compare_at_price > product.price -%}
-                <span class="kh-card__badge">Sale</span>
+                <span class="kh-card__badge">{{ 'kh.products.sale' | t }}</span>
               {%- elsif product.tags contains 'bestseller' or product.tags contains 'best-seller' -%}
-                <span class="kh-card__badge" style="background:var(--kh-turquoise);box-shadow:var(--kh-shadow-turq);">Bestseller</span>
+                <span class="kh-card__badge" style="background:var(--kh-turquoise);box-shadow:var(--kh-shadow-turq);">{{ 'kh.products.bestseller' | t }}</span>
               {%- elsif product.tags contains 'new' -%}
-                <span class="kh-card__badge" style="background:var(--kh-sunny);color:var(--kh-ink);box-shadow:0 8px 24px -8px rgba(240,180,0,.6);">New</span>
+                <span class="kh-card__badge" style="background:var(--kh-sunny);color:var(--kh-ink);box-shadow:0 8px 24px -8px rgba(240,180,0,.6);">{{ 'kh.products.new' | t }}</span>
               {%- endif -%}
             </div>
             <div class="kh-card__body">
@@ -83,7 +83,7 @@
                 </product-form-component>
               {%- else -%}
                 <button type="button" class="kh-card__atc kh-card__atc--soldout" disabled>
-                  {{ 'products.product.sold_out' | t | default: 'Sold out' }}
+                  {{ 'kh.products.sold_out' | t }}
                 </button>
               {%- endif -%}
             </div>
@@ -94,9 +94,9 @@
           <div class="kh-card" aria-hidden="true" data-reveal data-reveal-delay="{{ forloop.index | modulo: 4 | plus: 1 }}">
             <div class="kh-card__media" style="background:var(--kh-sand)"></div>
             <div class="kh-card__body">
-              <h3 class="kh-card__title">Sample product</h3>
+              <h3 class="kh-card__title">{{ 'kh.products.sample' | t }}</h3>
               <div class="kh-card__price">{{ 1999 | money }}</div>
-              <button type="button" class="kh-card__atc" disabled>Add to cart</button>
+              <button type="button" class="kh-card__atc" disabled>{{ 'kh.products.add_to_cart' | t }}</button>
             </div>
           </div>
         {%- endfor -%}
@@ -106,7 +106,7 @@
     {%- if section.settings.show_view_all and collection != blank -%}
       <div class="kh-products__cta">
         <a class="kh-btn kh-btn--ghost" href="{{ collection.url }}">
-          {{ section.settings.view_all_label | default: 'View all' }}
+          {{ section.settings.view_all_label | default: 'kh.products.view_all' | t }}
           <span aria-hidden="true">→</span>
         </a>
       </div>

@@ -3,7 +3,7 @@
   Cards with star rating, quote, author + location. Rounded, beachy, scroll-reveal.
 {%- endcomment -%}
 
-<section class="kh-tst kh-reveal" aria-label="Customer reviews">
+<section class="kh-tst kh-reveal" aria-label="{{ 'kh.testimonials.section_label' | t }}">
   <div class="kh-wrap">
     <header class="kh-tst__head">
       {%- if section.settings.eyebrow != blank -%}
@@ -20,7 +20,7 @@
         {%- for block in section.blocks -%}
           <article class="kh-tst__card" data-reveal data-reveal-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
             <span class="kh-tst__quote-mark" aria-hidden="true">”</span>
-            <div class="kh-tst__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <div class="kh-tst__stars" aria-label="{{ 'kh.testimonials.rating' | t }}">★★★★★</div>
             <blockquote class="kh-tst__q">“{{ block.settings.quote }}”</blockquote>
             <p class="kh-tst__by">
               <strong>{{ block.settings.author }}</strong>

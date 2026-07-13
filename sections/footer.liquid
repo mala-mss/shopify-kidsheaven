@@ -53,7 +53,7 @@
       {%- endfor -%}
 
       <div>
-        <h4 class="kh-footer__title">Say hi</h4>
+        <h4 class="kh-footer__title">{{ 'kh.footer.say_hi' | t }}</h4>
         <p>{{ section.settings.address }}</p>
         {%- if section.settings.email != blank -%}
           <p><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></p>
@@ -62,7 +62,7 @@
     </div>
 
     <div class="kh-footer__bottom">
-      <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}. Made for the splash.</span>
+      <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'kh.footer.made_for_the_splash' | t }}</span>
       {%- if section.settings.show_payment -%}
         <span>{{ shop.enabled_payment_types | payment_type_svg_tag: class: 'payment-icon' }}</span>
       {%- endif -%}

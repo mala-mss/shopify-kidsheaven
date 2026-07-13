@@ -6,10 +6,10 @@
 <div class="kh-404-wrap">
   <div class="kh-empty kh-reveal is-in">
     <span class="kh-empty__icon" aria-hidden="true">✦</span>
-    <h1 data-reveal>404 — Page not found</h1>
-    <p data-reveal data-reveal-delay="1">The page you’re looking for swam off somewhere. Let’s get you back to the beach.</p>
+    <h1 data-reveal>{{ 'kh.not_found.title' | t }}</h1>
+    <p data-reveal data-reveal-delay="1">{{ 'kh.not_found.body' | t }}</p>
     <a href="{{ routes.root_url }}" class="kh-btn kh-btn--coral" data-reveal data-reveal-delay="2">
-      Take me home <span aria-hidden="true">→</span>
+      {{ 'kh.not_found.home' | t }} <span aria-hidden="true">→</span>
     </a>
   </div>
 </div>

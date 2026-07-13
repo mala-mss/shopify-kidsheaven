@@ -3,7 +3,7 @@
   Coral→sunny gradient card, sun decoration, rounded email input.
 {%- endcomment -%}
 
-<section class="kh-nl kh-reveal" aria-label="Newsletter signup">
+<section class="kh-nl kh-reveal" aria-label="{{ 'kh.newsletter.section_label' | t }}">
   <div class="kh-wrap">
     <div class="kh-nl__card" data-reveal>
       <span class="kh-nl__sun" aria-hidden="true"></span>
@@ -23,11 +23,11 @@
           <input type="email"
                  name="contact[email]"
                  required
-                 placeholder="{{ section.settings.placeholder | default: 'beachclub@email.com' }}"
-                 aria-label="Email address"
+                 placeholder="{{ section.settings.placeholder | default: 'kh.newsletter.placeholder' | t }}"
+                 aria-label="{{ 'kh.newsletter.email_label' | t }}"
                  class="kh-nl__input">
           <button type="submit" class="kh-nl__submit">
-            {{ section.settings.button_label | default: 'Join the club' }} <span aria-hidden="true">→</span>
+            {{ section.settings.button_label | default: 'kh.newsletter.button' | t }} <span aria-hidden="true">→</span>
           </button>
           {%- if form.posted_successfully? -%}
             <p class="kh-nl__ok">✿ {{ 'general.newsletter.success' | t }}</p>

@@ -1,5 +1,5 @@
 {%- if section.settings.message != blank -%}
-  <div class="kh-announcement" role="region" aria-label="Announcement">
+  <div class="kh-announcement" role="region" aria-label="{{ 'kh.announcement.label' | t }}">
     {%- if section.settings.link != blank -%}
       <a href="{{ section.settings.link }}" style="color:inherit;text-decoration:none">
         {{ section.settings.message }}

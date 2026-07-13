@@ -7,7 +7,7 @@
   <div class="kh-header">
     <div class="kh-header__inner">
       <div class="kh-header__left">
-        <button class="kh-icon-btn kh-icon-btn--menu" type="button" aria-label="Open menu" data-kh-open-drawer="KhDrawer">
+        <button class="kh-icon-btn kh-icon-btn--menu" type="button" aria-label="{{ 'kh.header.open_menu' | t }}" data-kh-open-drawer="KhDrawer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/>
           </svg>
@@ -33,12 +33,12 @@
       </a>
 
       <div class="kh-header__right">
-        <button class="kh-icon-btn" type="button" aria-label="Search" data-kh-open-search>
+        <button class="kh-icon-btn" type="button" aria-label="{{ 'kh.header.search' | t }}" data-kh-open-search>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/>
           </svg>
         </button>
-        <a class="kh-icon-btn" href="{{ routes.account_url }}" aria-label="Account">
+        <a class="kh-icon-btn" href="{{ routes.account_url }}" aria-label="{{ 'kh.header.account' | t }}">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6" stroke-linecap="round"/>
           </svg>
@@ -47,10 +47,10 @@
           <button
             class="kh-icon-btn kh-icon-btn--lang"
             type="button"
-            aria-label="Change language"
+            aria-label="{{ 'kh.header.change_language' | t }}"
             aria-haspopup="menu"
             aria-expanded="false"
-            title="Change language"
+            title="{{ 'kh.header.change_language' | t }}"
             data-kh-locale-toggle
           >
             <span class="kh-locale-label" data-kh-locale-label>
@@ -67,6 +67,11 @@
               {%- endcomment -%}
               {%- assign return_to = routes.root_url -%}
               {%- for locale in shop.published_locales -%}
+                {%- assign locale_label_key = 'kh.header.locale_' | append: locale.iso_code -%}
+                {%- assign locale_label = locale_label_key | t -%}
+                {%- if locale_label == locale_label_key -%}
+                  {%- assign locale_label = locale.endonym_name | default: locale.name -%}
+                {%- endif -%}
                 <form action="/localization" method="post" data-kh-locale-form>
                   <input type="hidden" name="return_to" value="{{ return_to }}">
                   <input type="hidden" name="locale" value="{{ locale.iso_code }}">
@@ -76,20 +81,19 @@
                     data-locale="{{ locale.iso_code }}"
                     {% if locale.iso_code == request.locale.iso_code %}aria-current="true"{% endif %}
                   >
-                    {{ locale.endonym_name | default: locale.name }}
+                    {{ locale_label }}
                   </button>
                 </form>
               {%- endfor -%}
             {%- else -%}
               <p class="kh-locale-hint">
-                To switch languages, enable additional languages in
-                <em>Shopify Admin → Settings → Markets and languages</em>.
+                {{ 'kh.header.no_locales_hint' | t }}
               </p>
             {%- endif -%}
           </div>
         </div>
         <cart-icon class="header-actions__cart-icon{% if cart.item_count > 0 %} header-actions__cart-icon--has-cart{% endif %}">
-          <button class="kh-icon-btn kh-icon-btn--cart" type="button" aria-label="Cart" id="kh-cart-trigger" aria-haspopup="dialog" aria-controls="kh-cart-drawer" data-testid="cart-drawer-trigger" ref="cartBubble">
+          <button class="kh-icon-btn kh-icon-btn--cart" type="button" aria-label="{{ 'kh.header.cart' | t }}" id="kh-cart-trigger" aria-haspopup="dialog" aria-controls="kh-cart-drawer" data-testid="cart-drawer-trigger" ref="cartBubble">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7Z"/>
               <path d="M9 7a3 3 0 0 1 6 0" stroke-linecap="round"/>
@@ -124,7 +128,7 @@
         {%- if cart.empty? -%}
           <div class="cart-drawer__header" id="kh-cart-header-empty">
             <h2 class="cart-drawer__heading h4" id="kh-cart-heading-empty">{{ 'content.cart_empty' | t: default: 'Your cart is empty' }}</h2>
-            <button type="button" class="kh-drawer__close" data-kh-close-cart aria-label="Close cart">
+            <button type="button" class="kh-drawer__close" data-kh-close-cart aria-label="{{ 'kh.header.close_cart' | t }}">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
             </button>
           </div>
@@ -138,7 +142,7 @@
               {{ 'content.cart_title' | t: default: 'Your cart' }}
               <span class="kh-cart-count" style="margin-left:8px;">({{ cart.item_count }})</span>
             </h2>
-            <button type="button" class="kh-drawer__close" data-kh-close-cart aria-label="Close cart">
+            <button type="button" class="kh-drawer__close" data-kh-close-cart aria-label="{{ 'kh.header.close_cart' | t }}">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
             </button>
           </div>
@@ -181,8 +185,8 @@
 </cart-drawer-component>
 
 <div class="kh-drawer" id="KhDrawer" data-kh-drawer>
-  <aside class="kh-drawer__panel" role="dialog" aria-label="Menu">
-    <button class="kh-drawer__close" type="button" aria-label="Close menu" data-kh-close-drawer>
+  <aside class="kh-drawer__panel" role="dialog" aria-label="{{ 'kh.header.menu' | t }}">
+    <button class="kh-drawer__close" type="button" aria-label="{{ 'kh.header.close_menu' | t }}" data-kh-close-drawer>
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
     </button>
     <nav aria-label="Mobile">
@@ -194,17 +198,17 @@
 </div>
 
 <div class="kh-search-overlay" id="KhSearch" data-kh-search hidden>
-  <div class="kh-search-overlay__panel" role="dialog" aria-label="Search">
-    <button class="kh-search-overlay__close" type="button" aria-label="Close search" data-kh-close-search>
+  <div class="kh-search-overlay__panel" role="dialog" aria-label="{{ 'kh.header.search' | t }}">
+    <button class="kh-search-overlay__close" type="button" aria-label="{{ 'kh.header.close_search' | t }}" data-kh-close-search>
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
     </button>
     <form action="{{ routes.search_url }}" method="get" class="kh-search-overlay__form" role="search" autocomplete="off">
-      <label for="kh-search-input" class="visually-hidden">Search</label>
+      <label for="kh-search-input" class="visually-hidden">{{ 'kh.header.search' | t }}</label>
       <span class="kh-search-overlay__icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg>
       </span>
-      <input id="kh-search-input" type="search" name="q" placeholder="Search products…" class="kh-search-overlay__input" data-kh-search-input>
-      <button type="submit" class="kh-search-overlay__submit">Search</button>
+      <input id="kh-search-input" type="search" name="q" placeholder="{{ 'kh.header.search_products' | t }}" class="kh-search-overlay__input" data-kh-search-input>
+      <button type="submit" class="kh-search-overlay__submit">{{ 'kh.header.search' | t }}</button>
     </form>
     <div class="kh-search-overlay__results" data-kh-search-results aria-live="polite"></div>
   </div>
@@ -262,16 +266,17 @@
     function runPredictive(q) {
       if (!searchResults) return;
       if (!q || q.length < 2) { searchResults.innerHTML = ''; return; }
+      var noResultsText = {{ 'kh.search.no_results' | t | json }};
       var url = '{{ routes.predictive_search_url }}?q=' + encodeURIComponent(q) + '&resources[type]=product&resources[limit]=6&sections[]=predictive-search';
       fetch(url, { credentials: 'same-origin', headers: { 'Accept': 'application/json' } })
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (data) {
           if (!data || !data.resources || !data.resources.results || !data.resources.results.products) {
-            searchResults.innerHTML = '<p class="kh-search-overlay__empty">No matches for “' + q + '”.</p>';
+            searchResults.innerHTML = '<p class="kh-search-overlay__empty">' + noResultsText + ' “' + q + '”.</p>';
             return;
           }
           var products = data.resources.results.products;
-          if (!products.length) { searchResults.innerHTML = '<p class="kh-search-overlay__empty">No matches for “' + q + '”.</p>'; return; }
+          if (!products.length) { searchResults.innerHTML = '<p class="kh-search-overlay__empty">' + noResultsText + ' “' + q + '”.</p>'; return; }
           var html = '<ul class="kh-search-overlay__list">';
           products.forEach(function (p){
             var img = (p.featured_image && p.featured_image.url) ? p.featured_image.url : '';
@@ -391,12 +396,13 @@
           e.preventDefault();
           closeAll();
           var form = langBtn.closest('form');
+          var switchingText = {{ 'kh.header.switching' | t | json }};
           langBtn.dataset.origText = langBtn.textContent;
-          langBtn.textContent = '…';
+          langBtn.textContent = switchingText;
           langBtn.disabled = true;
           if (form) {
             setTimeout(function () {
-              if (langBtn.textContent === '…') {
+              if (langBtn.textContent === switchingText) {
                 langBtn.textContent = langBtn.dataset.origText || '';
                 langBtn.disabled = false;
               }

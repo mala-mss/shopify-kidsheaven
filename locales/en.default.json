@@ -362,5 +362,69 @@
     "newsletter": {
       "success": "Thanks for subscribing!"
     }
+  },
+  "kh": {
+    "header": {
+      "open_menu": "Open menu",
+      "search": "Search",
+      "search_products": "Search products…",
+      "account": "Account",
+      "cart": "Cart",
+      "change_language": "Change language",
+      "menu": "Menu",
+      "close_menu": "Close menu",
+      "close_search": "Close search",
+      "close_cart": "Close cart",
+      "no_locales_hint": "To switch languages, enable additional languages in <em>Shopify Admin → Settings → Markets and languages</em>.",
+      "switching": "…",
+      "locale_en": "English",
+      "locale_fr": "Français",
+      "locale_ar": "العربية"
+    },
+    "footer": {
+      "say_hi": "Say hi",
+      "made_for_the_splash": "Made for the splash."
+    },
+    "search": {
+      "no_results": "No matches for"
+    },
+    "announcement": {
+      "label": "Announcement"
+    },
+    "brand_story": {
+      "default_heading": "Our story"
+    },
+    "products": {
+      "section_label": "Featured products",
+      "sale": "Sale",
+      "bestseller": "Bestseller",
+      "new": "New",
+      "sold_out": "Sold out",
+      "sample": "Sample product",
+      "add_to_cart": "Add to cart",
+      "view_all": "View all"
+    },
+    "categories": {
+      "section_label": "Shop the vibe",
+      "eyebrow": "Shop the vibe"
+    },
+    "newsletter": {
+      "section_label": "Newsletter signup",
+      "email_label": "Email address",
+      "placeholder": "beachclub@email.com",
+      "button": "Join the club"
+    },
+    "testimonials": {
+      "section_label": "Customer reviews",
+      "rating": "5 out of 5 stars"
+    },
+    "value_props": {
+      "section_label": "Why Kid's Haven"
+    },
+    "not_found": {
+      "title": "404 — Page not found",
+      "body": "The page you’re looking for swam off somewhere. Let’s get you back to the beach.",
+      "home": "Take me home"
+    }
   }
 }

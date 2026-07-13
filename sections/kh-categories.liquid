@@ -4,10 +4,10 @@
   3D-tilt micro-interaction on hover. Scroll-reveal.
 {%- endcomment -%}
 
-<section class="kh-cats kh-reveal" aria-label="Shop the vibe">
+<section class="kh-cats kh-reveal" aria-label="{{ 'kh.categories.section_label' | t }}">
   <div class="kh-wrap">
     <header class="kh-cats__head">
-      <span class="kh-eyebrow" data-reveal>Shop the vibe</span>
+      <span class="kh-eyebrow" data-reveal>{{ 'kh.categories.eyebrow' | t }}</span>
       <h2 class="kh-h2" data-reveal data-reveal-delay="1">{{ section.settings.heading }}</h2>
       {%- if section.settings.subheading != blank -%}
         <p class="kh-lead" data-reveal data-reveal-delay="2">{{ section.settings.subheading }}</p>

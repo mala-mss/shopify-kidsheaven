@@ -357,5 +357,69 @@
     "newsletter": {
       "success": "Merci de vous être abonné(e) !"
     }
+  },
+  "kh": {
+    "header": {
+      "open_menu": "Ouvrir le menu",
+      "search": "Rechercher",
+      "search_products": "Rechercher des produits…",
+      "account": "Compte",
+      "cart": "Panier",
+      "change_language": "Changer de langue",
+      "menu": "Menu",
+      "close_menu": "Fermer le menu",
+      "close_search": "Fermer la recherche",
+      "close_cart": "Fermer le panier",
+      "no_locales_hint": "Pour changer de langue, activez des langues supplémentaires dans <em>Admin Shopify → Paramètres → Marchés et langues</em>.",
+      "switching": "…",
+      "locale_en": "English",
+      "locale_fr": "Français",
+      "locale_ar": "العربية"
+    },
+    "footer": {
+      "say_hi": "Nous contacter",
+      "made_for_the_splash": "Conçu pour l'éclaboussure."
+    },
+    "search": {
+      "no_results": "Aucun résultat pour"
+    },
+    "announcement": {
+      "label": "Annonce"
+    },
+    "brand_story": {
+      "default_heading": "Notre histoire"
+    },
+    "products": {
+      "section_label": "Produits en vedette",
+      "sale": "Solde",
+      "bestseller": "Meilleure vente",
+      "new": "Nouveau",
+      "sold_out": "Épuisé",
+      "sample": "Produit exemple",
+      "add_to_cart": "Ajouter au panier",
+      "view_all": "Tout voir"
+    },
+    "categories": {
+      "section_label": "Choisissez l'ambiance",
+      "eyebrow": "Choisissez l'ambiance"
+    },
+    "newsletter": {
+      "section_label": "Inscription à la newsletter",
+      "email_label": "Adresse e-mail",
+      "placeholder": "votre@email.com",
+      "button": "Rejoindre le club"
+    },
+    "testimonials": {
+      "section_label": "Avis clients",
+      "rating": "5 sur 5 étoiles"
+    },
+    "value_props": {
+      "section_label": "Pourquoi Kid's Haven"
+    },
+    "not_found": {
+      "title": "404 — Page introuvable",
+      "body": "La page que vous cherchez est partie nager quelque part. On vous ramène à la plage.",
+      "home": "Retour à l'accueil"
+    }
   }
 }
