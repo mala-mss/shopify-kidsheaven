@@ -1,10 +1,32 @@
-
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "footer",
   "name": "Footer",
   "sections": {
-    "newsletter": { "type": "newsletter", "settings": {} },
-    "footer":     { "type": "footer", "settings": {} }
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "tagline": "A beach club for kids — colorful, sun-safe, made to last more than one summer.",
+        "address": "Coastal studio, CA",
+        "email": "hello@kidshaven.com",
+        "facebook": "",
+        "instagram": "",
+        "tiktok": "",
+        "pinterest": "",
+        "youtube": "",
+        "show_payment": true
+      }
+    }
   },
-  "order": ["newsletter", "footer"]
+  "order": [
+    "footer"
+  ]
 }

@@ -169,23 +169,12 @@
         "cta_label": "En savoir plus",
         "cta_link": ""
       }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
-        "eyebrow": "Stay close",
-        "title": "Get the new drops first.",
-        "text": "One letter a month, no spam — early access to new collections, beach inspiration, and the occasional free shipping code.",
-        "placeholder": "your@email.com",
-        "button_label": "Join the club"
-      }
     }
   },
   "order": [
     "hero",
     "categories",
     "value-props",
-    "brand-story",
-    "newsletter"
+    "brand-story"
   ]
 }
