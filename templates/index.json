@@ -161,6 +161,7 @@
     "brand-story": {
       "type": "brand-story",
       "settings": {
+        "image": "shopify://shop_images/IMG-20260613-WA0102.jpg",
         "reverse": false,
         "eyebrow": "Our story",
         "heading": "Un club de plage pour les petits.",
