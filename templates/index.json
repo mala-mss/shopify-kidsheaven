@@ -158,27 +158,13 @@
         "subtitle": "Chaque pièce est pensée pour le jeu réel ,pas seulement pour la photo."
       }
     },
-    "featured-collection": {
-      "type": "featured-collection",
-      "settings": {
-        "eyebrow": "Best sellers",
-        "heading": "The pieces parents keep re-buying.",
-        "description": "Quick-dry, sun-safe, ready for the splash. These are the ones that go everywhere with us.",
-        "collection": "",
-        "products_to_show": 8,
-        "show_view_all": true,
-        "view_all_label": "Shop the full collection",
-        "add_to_cart_label": "Add to cart",
-        "background": "cream"
-      }
-    },
     "brand-story": {
       "type": "brand-story",
       "settings": {
         "reverse": false,
         "eyebrow": "Our story",
-        "heading": "A beach club for the small ones.",
-        "body": "<p>Kid's Haven started in a tiny coastal studio with a simple belief: kids deserve beach clothes that feel as good as they look. We design every piece in-house, source sun-safe and OEKO-TEX certified fabrics, and partner with fair-wage workshops who treat every stitch like it matters — because to a kid, it kind of does.</p><p>The result? Colorful, premium, ready-for-anything pieces built to last more than one summer. Designed by parents, for parents who refuse to compromise on quality (or fun).</p>",
+        "heading": "Un club de plage pour les petits.",
+        "body": "<p><strong>Kid's Haven est né dans un petit atelier côtier avec une conviction simple : les enfants méritent des vêtements de plage aussi agréables à porter qu'à regarder. Nous concevons chaque pièce en interne, sourçons des tissus anti-UV certifiés OEKO-TEX, et travaillons avec des ateliers à salaire équitable qui traitent chaque couture comme si elle comptait — parce que pour un enfant, elle compte vraiment.</strong></p><p><strong>Le résultat ? Des pièces colorées, premium, prêtes à tout affronter, conçues pour durer plus d'un été. Pensé par des parents, pour des parents qui refusent de faire des compromis sur la qualité (ou le plaisir).</strong></p>",
         "cta_label": "Read more",
         "cta_link": ""
       }
@@ -237,7 +223,6 @@
     "hero",
     "categories",
     "value-props",
-    "featured-collection",
     "brand-story",
     "testimonials",
     "newsletter"
