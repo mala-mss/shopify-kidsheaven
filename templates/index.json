@@ -1,16 +1,16 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "custom-hero",
-      "settings": {
-        "eyebrow": "Summer 2026 · Kids Beach Club",
-        "heading_line_1": "Tiny toes,",
-        "heading_highlight": "big waves.",
-        "heading_line_2": "Made for the splash.",
-        "subheading": "Colorful, sun-safe, ready for everything summer throws at them. Kid's Haven is a beach club for the small ones — playful, premium, built to last.",
-        "button_label": "Shop the summer",
-        "secondary_label": "See the story"
-      },
       "blocks": {
         "chip_sun": {
           "type": "chip",
@@ -38,22 +38,30 @@
         "chip_sun",
         "chip_dry",
         "chip_ethical"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "Summer 2026 · Kids Beach Club",
+        "heading_line_1": "Petits pieds,",
+        "heading_highlight": "grandes vagues.",
+        "heading_line_2": "Faits pour l'aventure.",
+        "subheading": "Coloré, protégé du soleil, prêt à affronter tout ce que l'été réserve. Kid's Haven est un club de plage pour les petits ludique, premium, conçu pour durer.",
+        "button_label": "Shop the summer",
+        "button_link": "",
+        "secondary_label": "See the story",
+        "secondary_link": ""
+      }
     },
     "categories": {
       "type": "kh-categories",
-      "settings": {
-        "heading": "Pick their summer mood.",
-        "subheading": "From the first splash to the last ice cream — every piece is made for the season."
-      },
       "blocks": {
         "cat_swimwear": {
           "type": "category",
           "settings": {
             "title": "Swimwear",
             "subtitle": "Splashes, pools, salty hair.",
+            "link": "",
             "color": "coral",
-            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M2 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0'/><path d='M2 22c2-2 4-2 6 0s4 2 6 0 4-2 6 0'/><circle cx='12' cy='7' r='3'/></svg>"
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0\"></path><path d=\"M2 22c2-2 4-2 6 0s4 2 6 0 4-2 6 0\"></path><circle cx=\"12\" cy=\"7\" r=\"3\"></circle></svg>"
           }
         },
         "cat_hats": {
@@ -61,8 +69,9 @@
           "settings": {
             "title": "Sun Hats",
             "subtitle": "Shade that looks cute.",
+            "link": "",
             "color": "turq",
-            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 14a9 9 0 0 1 18 0Z'/><path d='M3 14h18'/><path d='M12 5v9'/></svg>"
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 14a9 9 0 0 1 18 0Z\"></path><path d=\"M3 14h18\"></path><path d=\"M12 5v9\"></path></svg>"
           }
         },
         "cat_coverups": {
@@ -70,8 +79,9 @@
           "settings": {
             "title": "Cover-Ups",
             "subtitle": "Beach to ice-cream runs.",
+            "link": "",
             "color": "yellow",
-            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 3h12l2 6-4 2v10H8V11L4 9Z'/></svg>"
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h12l2 6-4 2v10H8V11L4 9Z\"></path></svg>"
           }
         },
         "cat_sandals": {
@@ -79,8 +89,9 @@
           "settings": {
             "title": "Sandals",
             "subtitle": "Hot sand? No problem.",
+            "link": "",
             "color": "sand",
-            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 17h18l-3-7-3 3-3-5-3 5-3-3Z'/></svg>"
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 17h18l-3-7-3 3-3-5-3 5-3-3Z\"></path></svg>"
           }
         }
       },
@@ -89,15 +100,14 @@
         "cat_hats",
         "cat_coverups",
         "cat_sandals"
-      ]
+      ],
+      "settings": {
+        "heading": "Pick their summer mood.",
+        "subheading": "From the first splash to the last ice cream — every piece is made for the season."
+      }
     },
     "value-props": {
       "type": "value-props",
-      "settings": {
-        "eyebrow": "Made for the beach, gentle on skin",
-        "title": "Little details, big summers.",
-        "subtitle": "Every piece is engineered for real-world play — not just photo ops."
-      },
       "blocks": {
         "vp_sun": {
           "type": "value",
@@ -105,7 +115,7 @@
             "title": "UPF 50+ sun-safe",
             "text": "Certified fabric blocks 98% of UV.",
             "color": "coral",
-            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='4'/><path d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41'/></svg>"
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"4\"></circle><path d=\"M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41\"></path></svg>"
           }
         },
         "vp_dry": {
@@ -114,7 +124,7 @@
             "title": "Quick-dry magic",
             "text": "Out of the water, into the sandbox — no soggy kid for long.",
             "color": "turq",
-            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 3v6M12 21v-6M3 12h6M21 12h-6M5.6 5.6l4.2 4.2M18.4 18.4l-4.2-4.2M5.6 18.4l4.2-4.2M18.4 5.6l-4.2 4.2'/></svg>"
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v6M12 21v-6M3 12h6M21 12h-6M5.6 5.6l4.2 4.2M18.4 18.4l-4.2-4.2M5.6 18.4l4.2-4.2M18.4 5.6l-4.2 4.2\"></path></svg>"
           }
         },
         "vp_ethical": {
@@ -123,7 +133,7 @@
             "title": "Ethically made",
             "text": "Fair-wage workshops, OEKO-TEX certified fabrics, low-impact dyes.",
             "color": "yellow",
-            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/></svg>"
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z\"></path></svg>"
           }
         },
         "vp_comfy": {
@@ -132,7 +142,7 @@
             "title": "Comfy, room to grow",
             "text": "Adjustable straps, soft seams, fits that last more than one summer.",
             "color": "ink",
-            "icon_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z'/></svg>"
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z\"></path></svg>"
           }
         }
       },
@@ -141,7 +151,12 @@
         "vp_dry",
         "vp_ethical",
         "vp_comfy"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "Made for the beach, gentle on skin",
+        "title": "Little details, big summers.",
+        "subtitle": "Every piece is engineered for real-world play — not just photo ops."
+      }
     },
     "featured-collection": {
       "type": "featured-collection",
@@ -149,9 +164,11 @@
         "eyebrow": "Best sellers",
         "heading": "The pieces parents keep re-buying.",
         "description": "Quick-dry, sun-safe, ready for the splash. These are the ones that go everywhere with us.",
+        "collection": "",
         "products_to_show": 8,
         "show_view_all": true,
         "view_all_label": "Shop the full collection",
+        "add_to_cart_label": "Add to cart",
         "background": "cream"
       }
     },
@@ -162,16 +179,12 @@
         "eyebrow": "Our story",
         "heading": "A beach club for the small ones.",
         "body": "<p>Kid's Haven started in a tiny coastal studio with a simple belief: kids deserve beach clothes that feel as good as they look. We design every piece in-house, source sun-safe and OEKO-TEX certified fabrics, and partner with fair-wage workshops who treat every stitch like it matters — because to a kid, it kind of does.</p><p>The result? Colorful, premium, ready-for-anything pieces built to last more than one summer. Designed by parents, for parents who refuse to compromise on quality (or fun).</p>",
-        "cta_label": "Read more"
+        "cta_label": "Read more",
+        "cta_link": ""
       }
     },
     "testimonials": {
       "type": "testimonials",
-      "settings": {
-        "eyebrow": "Beach diaries",
-        "title": "Real kids, real summer.",
-        "subtitle": "Snapshots from the families already living in Kid's Haven this season."
-      },
       "blocks": {
         "t_maya": {
           "type": "quote",
@@ -202,7 +215,12 @@
         "t_maya",
         "t_daniel",
         "t_aisha"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "Beach diaries",
+        "title": "Real kids, real summer.",
+        "subtitle": "Snapshots from the families already living in Kid's Haven this season."
+      }
     },
     "newsletter": {
       "type": "newsletter",
