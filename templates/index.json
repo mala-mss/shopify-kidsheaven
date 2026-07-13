@@ -112,8 +112,8 @@
         "vp_sun": {
           "type": "value",
           "settings": {
-            "title": "UPF 50+ sun-safe",
-            "text": "Certified fabric blocks 98% of UV.",
+            "title": "UPF 50+ anti-UV",
+            "text": "Tissu certifié qui bloque 98 % des UV.",
             "color": "coral",
             "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"4\"></circle><path d=\"M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41\"></path></svg>"
           }
@@ -121,7 +121,7 @@
         "vp_dry": {
           "type": "value",
           "settings": {
-            "title": "Quick-dry magic",
+            "title": "Séchage express",
             "text": "Out of the water, into the sandbox — no soggy kid for long.",
             "color": "turq",
             "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v6M12 21v-6M3 12h6M21 12h-6M5.6 5.6l4.2 4.2M18.4 18.4l-4.2-4.2M5.6 18.4l4.2-4.2M18.4 5.6l-4.2 4.2\"></path></svg>"
@@ -130,8 +130,8 @@
         "vp_ethical": {
           "type": "value",
           "settings": {
-            "title": "Ethically made",
-            "text": "Fair-wage workshops, OEKO-TEX certified fabrics, low-impact dyes.",
+            "title": "Fabrication éthique",
+            "text": "Ateliers à salaire équitable, tissus certifiés OEKO-TEX, teintures à faible impact.",
             "color": "yellow",
             "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z\"></path></svg>"
           }
@@ -139,8 +139,8 @@
         "vp_comfy": {
           "type": "value",
           "settings": {
-            "title": "Comfy, room to grow",
-            "text": "Adjustable straps, soft seams, fits that last more than one summer.",
+            "title": "Confortable, avec de la marge pour grandir",
+            "text": "Bretelles ajustables, coutures douces, des coupes qui durent plus d'un été.",
             "color": "ink",
             "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z\"></path></svg>"
           }
